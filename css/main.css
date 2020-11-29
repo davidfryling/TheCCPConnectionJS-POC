@@ -53,7 +53,7 @@ header {
     min-height: 200px;
     width: 95%;
     padding: 1%;
-    color: rgba(0, 87, 201, 1);
+    color: rgb(80, 80, 80);
     border: 1px solid rgba(0, 87, 201, 0.5);
     border-radius: 5px;
     box-shadow: 0 0 7.5px rgba(0,0,0,0.8);
@@ -65,7 +65,6 @@ header {
     text-align: center;
     padding: 2%;
     margin: 1% auto;
-    border: 1px solid black;
 }
 
 .data-header {
@@ -88,9 +87,18 @@ header {
     display: block;
     margin: 1% auto;
     border-radius: 5px;
-    padding: 1%;
     background-color: rgb(60, 121, 253);
     color: white;
+}
+
+.lg-btn {
+    font-size: 150%;
+    padding: 2%;
+}
+
+.sm-btn {
+    font-size: 100%;
+    padding: 1%;
 }
 
 .lg-frm,
@@ -99,6 +107,16 @@ header {
     text-align: center;
     margin: 1% auto;
     border-radius: 5px;
+    padding: 1%;
+}
+
+.lg-frm {
+    font-size: 150%;
+    padding: 1%;
+}
+
+.sm-frm {
+    font-size: 100%;
     padding: 1%;
 }
 
@@ -173,15 +191,19 @@ footer {
         width: 7.5%;
     }
 
-    .lg-btn, 
+    .lg-btn {
+        width: 25%;
+        margin-top: 1%;
+    }
+ 
     .sm-btn {
-        width: 15%;
+        width: 20%;
         margin-top: 1%;
     }
 
     .lg-frm, 
     .sm-frm {
-        width: 25%;
+        width: 35%;
         margin-top: 1%;
     }
 }
