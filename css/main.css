@@ -1,0 +1,187 @@
+/* general styles */
+
+html {
+    box-sizing: border-box; 
+}
+
+*, *:before, *:after { 
+    box-sizing: inherit; 
+}
+
+body { 
+    font-family: sans-serif;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+}
+
+/* header styles & responsive reactions */
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 20px;
+    display: flex;                  /* establish flex container */
+    justify-content: space-between; /* keep space between even so three elements remain left, cetner, right */
+    background-color: rgb(60, 121, 253);
+    color: white;
+    align-items: center;
+    padding: 1%;
+    z-index: 100;
+    box-shadow: 0 0 7.5px rgba(0,0,0,0.8);
+}
+
+.header-title {
+
+}
+
+.header-logout {
+
+}
+
+.header-user {
+}
+
+/* container & wrappers style */
+
+.container {
+    display: block;
+    position: relative;
+    margin: 0 auto;
+    min-height: 200px;
+    width: 95%;
+    padding: 1%;
+    color: rgba(0, 87, 201, 1);
+    border: 1px solid rgba(0, 87, 201, 0.5);
+    border-radius: 5px;
+    box-shadow: 0 0 7.5px rgba(0,0,0,0.8);
+}
+
+.wrapper {
+    display: block;
+    position: relative;
+    text-align: center;
+    padding: 2%;
+    margin: 1% auto;
+    border: 1px solid black;
+}
+
+.data-header {
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    margin: 1% auto;
+    text-decoration: underline;
+}
+
+.data-cell {
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    margin: 1% auto;
+}
+
+.lg-btn,
+.sm-btn {
+    display: block;
+    margin: 1% auto;
+    border-radius: 5px;
+    padding: 1%;
+    background-color: rgb(60, 121, 253);
+    color: white;
+}
+
+.lg-frm,
+.sm-frm {
+    display: block;
+    text-align: center;
+    margin: 1% auto;
+    border-radius: 5px;
+    padding: 1%;
+}
+
+/* footer style */
+
+footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    min-height: 20px;
+    display: flex;                  /* establish flex container */
+    align-items: center;
+    justify-content: center;
+}
+
+/* responsive styles */
+
+@media (max-width: 768px) {
+    header {
+        display: block;
+        position: relative;
+        text-align: center;
+        font-size: 150%;                  
+    }
+    
+    .container {
+        margin-top: 2.5%;                
+    }
+
+    .wrapper {
+      width: 100%;
+      font-size: 150%;
+    }
+
+    .data-header {
+        display: none;
+      }
+
+    .data-cell  {
+        width: 100%;
+        font-size: 200%;
+    }
+
+    .lg-btn, 
+    .sm-btn, 
+    .lg-frm, 
+    .sm-frm {
+        width: 75%;
+        font-size: 200%;
+    }
+}
+
+@media (min-width: 768px) {
+    header {
+        font-size: 100%;
+    }
+
+    .container {
+        margin-top: 125px;
+    }
+
+    .wrapper {
+        width: 100%;
+    }
+  
+    .data-header {
+        width: 7.5%;
+    }
+
+    .data-cell {
+        width: 7.5%;
+    }
+
+    .lg-btn, 
+    .sm-btn {
+        width: 15%;
+        margin-top: 1%;
+    }
+
+    .lg-frm, 
+    .sm-frm {
+        width: 25%;
+        margin-top: 1%;
+    }
+}

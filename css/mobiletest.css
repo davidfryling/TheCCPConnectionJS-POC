@@ -39,10 +39,11 @@ body { /* apply base-line properties to all elements within the body */
 }
 
 .data-wrapper {
-    display: inline;
+    display: block;
     position: relative;
     padding: 0;
     margin: 1% auto;
+    border: 1px solid black;
 }
 
 .cell-header {
