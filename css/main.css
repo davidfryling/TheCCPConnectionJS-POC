@@ -15,6 +15,16 @@ body {
     padding: 0;
 }
 
+
+/* hover effects for all clickable elements */
+
+button:hover ,
+.header-logout:hover {
+    cursor: pointer;
+    transform: scale(1.02);
+    transition: transform .25s;
+}
+
 /* header styles & responsive reactions */
 
 header {
@@ -33,16 +43,17 @@ header {
     box-shadow: 0 0 7.5px rgba(0,0,0,0.8);
 }
 
-.header-title {
+/* .header-title {
 
-}
+} */
 
 .header-logout {
-
+    display: none;
 }
 
-.header-user {
-}
+/* .header-user {
+    
+} */
 
 /* container & wrappers style */
 
@@ -59,6 +70,14 @@ header {
     box-shadow: 0 0 7.5px rgba(0,0,0,0.8);
 }
 
+.h {
+    display: inline;
+}
+
+.v {
+    display: block;
+}
+
 .wrapper {
     display: block;
     position: relative;
@@ -67,13 +86,30 @@ header {
     margin: 1% auto;
 }
 
-.data-header {
-    display: inline-block;
+/* .data-header {
+    display: inline-block; 
     position: relative;
     text-align: center;
     margin: 1% auto;
     text-decoration: underline;
-}
+} */
+
+/* <div class="wrapper">        
+<!-- wrappers for each data header -->
+    <p class="data-header">Header 1</p>
+    <p class="data-header">Header 2</p> 
+    <p class="data-header">Header 3</p> 
+    <p class="data-header">Header 4</p> 
+    <p class="data-header">Header 5</p> 
+    <p class="data-header">Header 5</p> 
+    <p class="data-header">Header 6</p> 
+    <p class="data-header">Header 7</p> 
+    <p class="data-header">Header 8</p> 
+    <p class="data-header">Header 9</p> 
+    <p class="data-header">Header 10</p> 
+    <p class="data-header">Header 11</p> 
+    <p class="data-header">Header 12</p>  
+</div>  */
 
 .data-cell {
     display: inline-block;
@@ -84,7 +120,6 @@ header {
 
 .lg-btn,
 .sm-btn {
-    display: block;
     margin: 1% auto;
     border-radius: 5px;
     background-color: rgb(60, 121, 253);
@@ -103,7 +138,6 @@ header {
 
 .lg-frm,
 .sm-frm {
-    display: block;
     text-align: center;
     margin: 1% auto;
     border-radius: 5px;
@@ -158,7 +192,7 @@ footer {
 
     .data-cell  {
         width: 100%;
-        font-size: 200%;
+        font-size: 150%;
     }
 
     .lg-btn, 
@@ -166,7 +200,7 @@ footer {
     .lg-frm, 
     .sm-frm {
         width: 75%;
-        font-size: 200%;
+        font-size: 150%;
     }
 }
 
@@ -184,11 +218,11 @@ footer {
     }
   
     .data-header {
-        width: 7.5%;
+        width: 7%;
     }
 
     .data-cell {
-        width: 7.5%;
+        width: 7%;
     }
 
     .lg-btn {
