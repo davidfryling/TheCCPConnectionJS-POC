@@ -86,10 +86,18 @@ function buildH3() { // this will be used to build an h1 element on demand
     return h3;
 }
 
-function buildButton() { // this will be used to build a button element on demand
-    var button = document.createElement("button");
-    console.log(button);
-    return button;
+function buildLgButton() { // this will be used to build a button element on demand
+    var lgButton = document.createElement("button");
+    lgButton.classList.add("lg-btn"); // add a class for button so CSS applies style
+    console.log(lgButton);
+    return lgButton;
+}
+
+function buildSmButton() { // this will be used to build a button element on demand
+    var smButton = document.createElement("button");
+    smButton.classList.add("sm-btn"); // add a class for button so CSS applies style
+    console.log(smButton);
+    return smButton;
 }
 
 function buildTextInput() { // this will be used to build an input element on demand
@@ -119,8 +127,7 @@ function rendHome() {  // function that builds landing page
     var homeButtons = []; // create an empty array to hold completed buttons
     var buttonNames = ["student", "parent", "counselor", "advisor"] // create array of button names
     for (i = 0; i < buttonNames.length; i++) { // run a for loop to build a button for each element in the array
-        let button = buildButton(); // call build button method
-        button.classList.add("lg-btn"); // add a class for button so CSS applies style
+        let button = buildLgButton(); // call build button method
         button.classList.add("h"); // add a class for button so CSS knows to make display element inline or block
         button.setAttribute("onclick", "rendAuth(" + "'" + buttonNames[i] + "'" + ")"); // add onclick action for each button to render authentication page and pass user to function
         button.append(buttonNames[i]); // add names to buttons
@@ -159,15 +166,13 @@ function rendAuth(userType) { // function that builds authentication page
     textWrapper.append(instructions); // add instructions to wrapper
     console.log(textWrapper);
     rendAuthText.append(textWrapper); // append the html element with complete wrapper
-    // <input class="lg-frm h" type="text" placeholder="form field">
-    // <input class="sm-frm h" type="text" placeholder="form field">
     // render auth form
     var rendAuthForm = document.getElementById("render_1"); // assign a variable to represent where elements will go in html
     var formWrapper = buildWrapper(); // build a wrapper and assign it to a variable
-    var authInput1 = buildTextInput(); // build an input and assign it to a variable
+    var authInput1= buildTextInput(); // build an input and assign it to a variable
     var authInput2 = buildTextInput(); // build another input and assign it to a variable
-    var authLogin = buildButton(); // build a button and assign it to a variable
-    var authNew = buildButton(); // build another button for students only
+    var authLogin = buildSmButton(); // build two buttons and assign it to a variable
+    var authNew = buildSmButton(); // build another button for students only
     if (userType == "student") { // customized title and instructions based on user type
         // build first input
         authInput1.append("Your Email:"); // add input text
@@ -181,12 +186,10 @@ function rendAuth(userType) { // function that builds authentication page
         authInput2.setAttribute("placeholder", "enter CID here"); // add placeholder text 
         // build first button
         authLogin.append("find profile"); // add name to button
-        authLogin.classList.add("sm-btn"); // add a class for input so CSS applies style
         authLogin.classList.add("h"); // add a class for input so CSS applies style
         authLogin.setAttribute("onclick", "rendSID('student')"); // add onclick action for button to render student info page and pass user to function
         // build second button
         authNew.append("create profile"); // add name to button
-        authNew.classList.add("sm-btn"); // add a class for input so CSS applies style
         authNew.classList.add("h"); // add a class for input so CSS applies style
         authNew.setAttribute("onclick", "rendSID('new')"); // add onclick action for button to render student info page and pass user to function
     }
@@ -203,12 +206,10 @@ function rendAuth(userType) { // function that builds authentication page
         authInput2.setAttribute("placeholder", "enter PIN here"); // add placeholder text 
         // build first button
         authLogin.append("find student"); // add name to button
-        authLogin.classList.add("sm-btn"); // add a class for input so CSS applies style
         authLogin.classList.add("h"); // add a class for input so CSS applies style
         authLogin.setAttribute("onclick", "rendSID('parent')"); // add onclick action for button to render student info page and pass user to function
         // build second button
         authNew.append("create profile"); // add name to button
-        authNew.classList.add("sm-btn"); // add a class for input so CSS applies style
         authNew.classList.add("h"); // add a class for input so CSS applies style
         authNew.setAttribute("onclick", "rendSID('new')"); // add onclick action for button to render student info page and pass user to function 
     }
@@ -225,7 +226,6 @@ function rendAuth(userType) { // function that builds authentication page
         authInput2.setAttribute("placeholder", "enter password here"); // add placeholder text 
         // build first button
         authLogin.append("login"); // add name to button
-        authLogin.classList.add("sm-btn"); // add a class for input so CSS applies style
         authLogin.classList.add("h"); // add a class for input so CSS applies style
         authLogin.setAttribute("onclick", "rendDash('counselor')"); // add onclick action for button to render student info page and pass user to function
     }
@@ -242,7 +242,6 @@ function rendAuth(userType) { // function that builds authentication page
         authInput2.setAttribute("placeholder", "enter password here"); // add placeholder text 
         // build first button
         authLogin.append("login"); // add name to button
-        authLogin.classList.add("sm-btn"); // add a class for input so CSS applies style
         authLogin.classList.add("h"); // add a class for input so CSS applies style
         authLogin.setAttribute("onclick", "rendDash('advisor')"); // add onclick action for button to render student info page and pass user to function 
     }
