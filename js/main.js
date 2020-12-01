@@ -61,6 +61,18 @@ function buildWrapper() { // this will be used to build the wrapper of each sect
     return wrapper;
 }
 
+function buildH1() { // this will be used to build an h1 element when needed
+    var h1 = document.createElement("h1");
+    console.log(h1);
+    return h1;
+}
+
+function buildH3() { // this will be used to build an h1 element when needed
+    var h3 = document.createElement("h3");
+    console.log(h3);
+    return h3;
+}
+
 function buildButton() { // this will be used to build a button element when needed
     var button = document.createElement("button");
     console.log(button);
@@ -69,10 +81,22 @@ function buildButton() { // this will be used to build a button element when nee
 
 function rendHome() {  // function that builds landing page
     clearContainer(); // first, clear any contents remaining in the container
-    var renderHome = document.getElementById("render_here"); // assign a variable to represent where elements will go in html
+    // render text
+    var rendHomeText = document.getElementById("render_0"); // assign a variable to represent where elements will go in html
+    var textWrapper = buildWrapper(); // build a wrapper and assign it to a variable
+    var title = buildH1(); // build an h1 element and assign it as the title
+    title.append("Welcome to The CCP Connection!"); // add title text
+    var instructions = buildH3(); // build an h3 element and assign it as the instructions
+    instructions.append("Please select your role below to begin...")
+    textWrapper.append(title); // add title to wrapper
+    textWrapper.append(instructions); // add instructions to wrapper
+    console.log(textWrapper);
+    rendHomeText.append(textWrapper); // append the html element with complete wrapper
+    // render buttons
+    var rendHomeButtons = document.getElementById("render_1"); // assign a variable to represent where elements will go in html
     var buttonWrapper = buildWrapper(); // build a wrapper and assign it to a variable
     var homeButtons = []; // create an empty array to hold completed buttons
-    var buttonNames = ["Student", "Parent", "Counselor", "Advisor"] // create array of button names
+    var buttonNames = ["student", "parent", "counselor", "advisor"] // create array of button names
     for (i = 0; i < buttonNames.length; i++) { // run a for loop to build a button for each element in the array
         let button = buildButton(); // call build button method
         button.classList.add("lg-btn"); // add a class for button so CSS applies style
@@ -83,7 +107,7 @@ function rendHome() {  // function that builds landing page
     for (i = 0; i < homeButtons.length; i++) { // run for loop to add each button to the wrapper
         buttonWrapper.append(homeButtons[i]); // add button to wrapper each iteration
     }
-    renderHome.append(buttonWrapper); // append the html element with complete wrapper
+    rendHomeButtons.append(buttonWrapper); // append the html element with complete wrapper
 }
 
 

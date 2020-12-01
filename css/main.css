@@ -38,12 +38,13 @@ header {
     background-color: rgb(60, 121, 253);
     color: white;
     align-items: center;
-    padding: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
     z-index: 100;
     box-shadow: 0 0 7.5px rgba(0,0,0,0.8);
 }
 
-/* .header-title {
+/* .header-title { NEVER CHANGED????
 
 } */
 
@@ -51,7 +52,7 @@ header {
     display: none;
 }
 
-/* .header-user {
+/* .header-user { NOT USED???
     
 } */
 
@@ -61,10 +62,10 @@ header {
     display: block;
     position: relative;
     margin: 0 auto;
-    min-height: 200px;
+    min-height: 800px;
     width: 95%;
     padding: 1%;
-    color: rgb(80, 80, 80);
+    color: rgb(65, 65, 65);
     border: 1px solid rgba(0, 87, 201, 0.5);
     border-radius: 5px;
     box-shadow: 0 0 7.5px rgba(0,0,0,0.8);
@@ -171,14 +172,14 @@ footer {
 
 @media (max-width: 768px) {
     header {
+        position: absolute;
         display: block;
-        position: relative;
         text-align: center;
         font-size: 150%;                  
     }
     
     .container {
-        margin-top: 2.5%;                
+        margin-top: 205px;                
     }
 
     .wrapper {
@@ -210,7 +211,7 @@ footer {
     }
 
     .container {
-        margin-top: 125px;
+        margin-top: 110px;
     }
 
     .wrapper {
@@ -226,13 +227,17 @@ footer {
     }
 
     .lg-btn {
-        width: 25%;
+        width: 22%;
         margin-top: 1%;
+        margin-left: .5%;
+        margin-right: .5%;
     }
  
     .sm-btn {
-        width: 20%;
+        width: 17%;
         margin-top: 1%;
+        margin-left: .5%;
+        margin-right: .2%;
     }
 
     .lg-frm, 
