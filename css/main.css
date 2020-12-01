@@ -140,7 +140,7 @@ header {
 
 .lg-frm,
 .sm-frm {
-    text-align: center;
+    text-align: left;
     margin: 1% auto;
     border-radius: 5px;
     padding: 1%;

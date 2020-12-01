@@ -175,12 +175,10 @@ function rendAuth(userType) { // function that builds authentication page
     var authNew = buildSmButton(); // build another button for students only
     if (userType == "student") { // customized title and instructions based on user type
         // build first input
-        authInput1.append("Your Email:"); // add input text
         authInput1.classList.add("sm-frm"); // add a class for input so CSS applies style
         authInput1.classList.add("v"); // add a class for input so CSS applies style
         authInput1.setAttribute("placeholder", "enter email address here"); // add placeholder text 
         // build second input
-        authInput2.append("Your CID:"); // add input text
         authInput2.classList.add("sm-frm"); // add a class for input so CSS applies style
         authInput2.classList.add("v"); // add a class for  input so CSS applies style
         authInput2.setAttribute("placeholder", "enter CID here"); // add placeholder text 
@@ -195,12 +193,10 @@ function rendAuth(userType) { // function that builds authentication page
     }
     else if (userType == "parent") { // customized title and instructions based on user type
         // build first input
-        authInput1.append("Your Student's CID:"); // add input text
         authInput1.classList.add("sm-frm"); // add a class for input so CSS applies style
         authInput1.classList.add("v"); // add a class for input so CSS applies style
         authInput1.setAttribute("placeholder", "enter your student's CID here"); // add placeholder text 
         // build second input
-        authInput2.append("Unique PIN:"); // add input text
         authInput2.classList.add("sm-frm"); // add a class for input so CSS applies style
         authInput2.classList.add("v"); // add a class for  input so CSS applies style
         authInput2.setAttribute("placeholder", "enter PIN here"); // add placeholder text 
@@ -215,12 +211,10 @@ function rendAuth(userType) { // function that builds authentication page
     }
     else if (userType == "counselor") { // customized title and instructions based on user type
         // build first input
-        authInput1.append("Your Username:"); // add input text
         authInput1.classList.add("sm-frm"); // add a class for input so CSS applies style
         authInput1.classList.add("v"); // add a class for input so CSS applies style
         authInput1.setAttribute("placeholder", "enter username here"); // add placeholder text 
         // build second input
-        authInput2.append("Your Password:"); // add input text
         authInput2.classList.add("sm-frm"); // add a class for input so CSS applies style
         authInput2.classList.add("v"); // add a class for  input so CSS applies style
         authInput2.setAttribute("placeholder", "enter password here"); // add placeholder text 
@@ -231,12 +225,10 @@ function rendAuth(userType) { // function that builds authentication page
     }
     else if (userType == "advisor") { // customized title and instructions based on user type
         // build first input
-        authInput1.append("Your Username:"); // add input text
         authInput1.classList.add("sm-frm"); // add a class for input so CSS applies style
         authInput1.classList.add("v"); // add a class for input so CSS applies style
         authInput1.setAttribute("placeholder", "enter username here"); // add placeholder text 
         // build second input
-        authInput2.append("Your Password:"); // add input text
         authInput2.classList.add("sm-frm"); // add a class for input so CSS applies style
         authInput2.classList.add("v"); // add a class for  input so CSS applies style
         authInput2.setAttribute("placeholder", "enter password here"); // add placeholder text 
