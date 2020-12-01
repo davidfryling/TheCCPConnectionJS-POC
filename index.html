@@ -8,7 +8,7 @@
         <script src="./js/main.js" defer></script>
         <link rel="stylesheet" type="text/css" href="./css/main.css">
     </head>
-    <body>
+    <body onload="rendHome()">
 
         <!--header username and header will only appear after authentication -->
 
@@ -21,7 +21,11 @@
         <!-- main container class to hold all elements-->
 
        <div class="container"> 
-            <div id="render_here"></div>
+            <button onclick="clearContainer()">Click here to clear container</button>
+            <div id="render_here">
+                <div class="wrapper">Testing clear container function</div>
+                <div class="wrapper">Testing clear container function again</div>
+            </div>
        </div>
         
        <!-- footer -->
