@@ -10,15 +10,15 @@
     </head>
     <body onload="rendHome()">
 
-        <!--header username and header will only appear after authentication -->
+        <!--header section - logout with user will only appear after authentication -->
 
         <header>
-            <h1 class="header-title">the ccp connection</h1>
-            <h3 class="header-user"></h3>
-            <h3 class="header-logout">logout, </h3>
+            <h1 class="header-title" onclick="rendHome()">the ccp connection</h1>
+                <!-- <span class="tooltip-text">Click Page Title to Return Home</span> LATER MAYBE-->
+            <h3 class="header-logout" onclick="rendHome()">logout, </h3>
         </header>
 
-        <!-- main container class to hold all elements-->
+        <!-- main container - will hold all dynamically rendered elements-->
 
        <div class="container"> 
             <div id="render_0"></div>
@@ -38,11 +38,11 @@
             <div id="render_14"></div>
        </div>
         
-       <!-- footer -->
+       <!-- footer section -->
 
        <footer>
             <img src="./css/imgs/ccp_connection_footer.svg" alt="The CCP Connection">
-            <img src="./css/imgs/red_anchor_footer.svg" alt="Red Anchor, LLC">
+            <img src="./css/imgs/red_anchor_footer.svg" alt="Red Anchor, LLC"> <!-- will eventually link to red anchor website -->
         </footer>
 
     </body>

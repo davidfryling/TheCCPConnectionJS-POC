@@ -18,7 +18,8 @@ body {
 
 /* hover effects for all clickable elements */
 
-button:hover ,
+button:hover,
+.header-title:hover,
 .header-logout:hover {
     cursor: pointer;
     transform: scale(1.02);
