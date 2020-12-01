@@ -55,6 +55,18 @@ function clearContainer() { // this will be used to clear container on demand
     }
 }
 
+function hideLogout() { // this will be used to hide the logout text on demand
+    var logout = document.getElementById("logout");
+    console.log(logout);
+    logout.style.display = "none";
+}
+
+function showLogout() { // this will be used to show the logout text on demand
+    var logout = document.getElementById("logout");
+    console.log(logout);
+    logout.style.display = "block";
+}
+
 function buildWrapper() { // this will be used to build the wrapper on demand
     var wrapper = document.createElement("div");
     wrapper.classList.add("wrapper");
@@ -89,6 +101,7 @@ function buildTextInput() { // this will be used to build an input element on de
 
 function rendHome() {  // function that builds landing page
     clearContainer(); // first, clear any contents remaining in the container
+    hideLogout(); // make sure logout is hidden when returning home
     // render text
     var rendHomeText = document.getElementById("render_0"); // assign a variable to represent where elements will go in html
     var textWrapper = buildWrapper(); // build a wrapper and assign it to a variable

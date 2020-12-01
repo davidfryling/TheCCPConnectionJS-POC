@@ -50,7 +50,7 @@ header {
 } */
 
 .header-logout {
-    display: none;
+    display: block;
 }
 
 /* .header-user { NOT USED???
