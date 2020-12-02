@@ -1,17 +1,10 @@
-var userType; // define and name variable that will track each user type later for different functions
-var userName; // define and name variable that will track each user name later for different functions
+// global variables that will be used later
+var userType;
+var userName;
+var userTypeArray = ["student", "parent", "counselor", "advisor", "new"];
 
-// var currentWidth = window.addEventListener("resize", function(event) { // define and name variable that constantly notes and returns the current screen width for later use
-//     var newWidth = window.innerWidth;
-//     return newWidth;
-// });
 
-// function getWidth() {
-//     var newWidth = window.innerWidth;
-//     return newWidth;
-// }
-
-const janeDRequest = { // define and name demo dictionary that will be used to display data later
+const janeDRequest = { // make array instead and add correspponding header array for this data EDIT!!!!
     subj : "MATH",
     courseN : "1149",
     sectN : "001",
@@ -25,9 +18,13 @@ const janeDRequest = { // define and name demo dictionary that will be used to d
     note: ""
 }
 
-function clearContainer() { // this will be used to clear container on demand
+function logout() { // this will refresh the page on logout so data is erased
+    location.reload();
+}
+
+function clearContainer() { // this will be used to clear the container on demand
     var contents = document.querySelectorAll(".wrapper");
-    console.log(contents);
+    //console.log(contents); // for debugging
     for (i = 0; i < contents.length; i++) {
         contents[i].remove();
     }
@@ -35,311 +32,325 @@ function clearContainer() { // this will be used to clear container on demand
 
 function hideLogout() { // this will be used to hide the logout text on demand
     var logout = document.getElementById("logout");
-    console.log(logout);
+    //console.log(logout); // for debugging
     logout.style.display = "none";
 }
 
 function showLogout() { // this will be used to show the logout text on demand
     var logout = document.getElementById("logout");
-    console.log(logout);
+    //console.log(logout); // for debugging
     logout.style.display = "block";
 }
 
-function buildWrapper() { // this will be used to build the wrapper on demand
+function buildWrapper() { // this will be used to build the section wrapper on demand
     var wrapper = document.createElement("div");
     wrapper.classList.add("wrapper");
-    console.log(wrapper);
+    //console.log(wrapper); // for debugging
     return wrapper;
 }
 
-function buildH1() { // this will be used to build an h1 element on demand
+function buildH1() { // this will be used to build a heading 1 element on demand
     var h1 = document.createElement("h1");
-    console.log(h1);
+    //console.log(h1); // for debugging
     return h1;
 }
 
-function buildH3() { // this will be used to build an h1 element on demand
+function buildH3() { // this will be used to build a heading 3 element on demand
     var h3 = document.createElement("h3");
-    console.log(h3);
+    //console.log(h3); // for debugging
     return h3;
 }
 
-function buildLgButton() { // this will be used to build a button element on demand
+function buildLgButton() { // this will be used to build a button element with large button styling on demand
     var lgButton = document.createElement("button");
-    lgButton.classList.add("lg-btn"); // add a class for button so CSS applies style
-    console.log(lgButton);
+    lgButton.classList.add("lg-btn");
+    //console.log(lgButton); // for debugging
     return lgButton;
 }
 
-function buildSmButton() { // this will be used to build a button element on demand
+function buildSmButton() { // this will be used to build a button element with small button styling on demand
     var smButton = document.createElement("button");
-    smButton.classList.add("sm-btn"); // add a class for button so CSS applies style
-    console.log(smButton);
+    smButton.classList.add("sm-btn");
+    //console.log(smButton); // for debugging
     return smButton;
 }
 
-function buildTextInput() { // this will be used to build an input element on demand
+function buildTextInput() { // this will be used to build a text input element on demand
     var input = document.createElement("input");
     input.setAttribute("type", "text");
-    console.log(input);
+    //console.log(input); // for debugging
     return input;
 }
 
-function buildDataCell() { // this will be used to build the wrapper on demand
+function buildDataCell() { // this will be used to build the data cell wrapper on demand
     var cell = document.createElement("div");
     cell.classList.add("data-cell");
-    console.log(cell);
+    //console.log(cell); // for debugging
     return cell;
 }
 
-function buildPara() {
+function buildPara() { // this will be used to build a paragraph element on demand
     var para = document.createElement("p")
-    console.log(para);
+    //console.log(para); // for debugging
     return para;
 }
 
-function buildBreak(){
+function buildBreak(){ // this will be used to build a break element on demand
     var br = document.createElement("br");
-    console.log(br);
+    //console.log(br); // for debugging
     return br;
 }
 
-function rendHome() {  // function that builds landing page
-    clearContainer(); // first, clear any contents currently in the container
-    hideLogout(); // make sure logout is hidden when returning home
-    // render text
-    var rendHomeText = document.getElementById("render_0"); // assign a variable to represent where elements will go in html
-    var textWrapper = buildWrapper(); // build a wrapper and assign it to a variable
-    var title = buildH1(); // build an h1 element and assign it as the title
-    title.append("Welcome to The CCP Connection!"); // add title text
-    var instructions = buildH3(); // build an h3 element and assign it as the instructions
-    instructions.append("Please select your role below to begin..."); // add instuction text
-    textWrapper.append(title); // add title to wrapper
-    textWrapper.append(instructions); // add instructions to wrapper
-    console.log(textWrapper);
-    rendHomeText.append(textWrapper); // append the html element with complete wrapper
+function rendHome() {  // this will render the home page on demand
+    // first, clear any contents currently in the container
+    clearContainer(); 
+    
+    // render page title and instructions
+    var rendHomeText = document.getElementById("render_0"); 
+    var textWrapper = buildWrapper(); 
+    var title = buildH1(); 
+    title.append("Welcome to The CCP Connection!"); 
+    var instructions = buildH3(); 
+    instructions.append("Please select your role below to begin..."); 
+    textWrapper.append(title); 
+    textWrapper.append(instructions); 
+    //console.log(textWrapper); // for debugging
+    rendHomeText.append(textWrapper);
+    
     // render buttons
-    var rendHomeButtons = document.getElementById("render_1"); // assign a variable to represent where elements will go in html
-    var buttonWrapper = buildWrapper(); // build a wrapper and assign it to a variable
-    var buttonNames = ["student", "parent", "counselor", "advisor"] // create array of button names
-    for (i = 0; i < buttonNames.length; i++) { // run a for loop to build a button for each element in the array
-        let button = buildLgButton(); // call build button method
-        button.classList.add("h"); // add a class for button so CSS knows to make display element inline or block
-        button.setAttribute("onclick", "rendAuth(" + "'" + buttonNames[i] + "'" + ")"); // add onclick action for each button to render authentication page and pass user to function
-        button.append(buttonNames[i]); // add names to buttons
-        buttonWrapper.append(button); // add button to wrapper each iteration
+    var rendHomeButtons = document.getElementById("render_1"); 
+    var buttonWrapper = buildWrapper(); 
+    for (i = 0; i < userTypeArray.length - 1; i++) { // run a for loop to build a button for each element in the array, minus the last element
+        let button = buildLgButton();
+        button.classList.add("h"); 
+        button.setAttribute("onclick", "rendAuth(" + "'" + userTypeArray[i] + "'" + ")");
+        button.append(userTypeArray[i]);
+        buttonWrapper.append(button); 
     }
-    rendHomeButtons.append(buttonWrapper); // append the html element with complete wrapper
+    //console.log(buttonWrapper); // for debugging
+    rendHomeButtons.append(buttonWrapper); 
 }
 
-function rendAuth(userType) { // function that builds authentication page
-    clearContainer(); // first, clear any contents currently in the container
-    // render text
-    var rendAuthText = document.getElementById("render_0"); // assign a variable to represent where elements will go in html
-    var textWrapper = buildWrapper(); // build a wrapper and assign it to a variable
-    var title = buildH1(); // build an h1 element and assign it as the title
-    var instructions = buildH3(); // build an h3 element and assign it as the instructions
-    if (userType == "student") { // customized title and instructions based on user type
-        title.append("Let's find your profile!"); // add title text
-        instructions.append("Please enter your email address and cougar ID to continue... if this is your first time using this portal, click \"create profile\" below..."); // add instuction text 
-    }
-    else if (userType == "parent") { // customized title and instructions based on user type
-        title.append("Let's find your student's profile!"); // add title text
-        instructions.append("Please enter your student's cougar ID and the PIN (in your notification email) to continue..."); // add instuction text 
-    }
-    else if (userType == "counselor") { // customized title and instructions based on user type
-        title.append("Login"); // add title text
-        instructions.append("Please enter your username and password to continue..."); // add instuction text 
-    }
-    else if (userType == "advisor") { // customized title and instructions based on user type
-        title.append("Login"); // add title text
-        instructions.append("Please enter your username and password to continue..."); // add instuction text 
-    }
-    textWrapper.append(title); // add title to wrapper
-    textWrapper.append(instructions); // add instructions to wrapper
-    console.log(textWrapper);
-    rendAuthText.append(textWrapper); // append the html element with complete wrapper
-    // render auth form
-    var rendAuthForm = document.getElementById("render_1"); // assign a variable to represent where elements will go in html
-    var formWrapper = buildWrapper(); // build a wrapper and assign it to a variable
-    var authInput1= buildTextInput(); // build an input and assign it to a variable
-    var authInput2 = buildTextInput(); // build another input and assign it to a variable
-    var authLogin = buildSmButton(); // build two buttons and assign it to a variable
-    var authNew = buildSmButton(); // build another button for students only
-    if (userType == "student") { // customized title and instructions based on user type
-        // build first input
-        authInput1.classList.add("sm-frm"); // add a class for input so CSS applies style
-        authInput1.classList.add("v"); // add a class for input so CSS applies style
-        authInput1.setAttribute("placeholder", "enter email address here"); // add placeholder text 
-        // build second input
-        authInput2.classList.add("sm-frm"); // add a class for input so CSS applies style
-        authInput2.classList.add("v"); // add a class for  input so CSS applies style
-        authInput2.setAttribute("placeholder", "enter CID here"); // add placeholder text 
-        // build first button
-        authLogin.append("find profile"); // add name to button
-        authLogin.classList.add("h"); // add a class for input so CSS applies style
-        authLogin.setAttribute("onclick", "rendProf('student')"); // add onclick action for button to render student info page and pass user to function
-        // build second button
-        authNew.append("create profile"); // add name to button
-        authNew.classList.add("h"); // add a class for input so CSS applies style
-        authNew.setAttribute("onclick", "rendProf('new')"); // add onclick action for button to render student info page and pass user to function
-    }
-    else if (userType == "parent") { // customized title and instructions based on user type
-        // build first input
-        authInput1.classList.add("sm-frm"); // add a class for input so CSS applies style
-        authInput1.classList.add("v"); // add a class for input so CSS applies style
-        authInput1.setAttribute("placeholder", "enter your student's CID here"); // add placeholder text 
-        // build second input
-        authInput2.classList.add("sm-frm"); // add a class for input so CSS applies style
-        authInput2.classList.add("v"); // add a class for  input so CSS applies style
-        authInput2.setAttribute("placeholder", "enter PIN here"); // add placeholder text 
-        // build first button
-        authLogin.append("find student"); // add name to button
-        authLogin.classList.add("h"); // add a class for input so CSS applies style
-        authLogin.setAttribute("onclick", "rendProf('parent')"); // add onclick action for button to render student info page and pass user to function
-        // build second button
-        authNew.append("create profile"); // add name to button
-        authNew.classList.add("h"); // add a class for input so CSS applies style
-        authNew.setAttribute("onclick", "rendProf('new')"); // add onclick action for button to render student info page and pass user to function 
-    }
-    else if (userType == "counselor") { // customized title and instructions based on user type
-        // build first input
-        authInput1.classList.add("sm-frm"); // add a class for input so CSS applies style
-        authInput1.classList.add("v"); // add a class for input so CSS applies style
-        authInput1.setAttribute("placeholder", "enter username here"); // add placeholder text 
-        // build second input
-        authInput2.classList.add("sm-frm"); // add a class for input so CSS applies style
-        authInput2.classList.add("v"); // add a class for  input so CSS applies style
-        authInput2.setAttribute("placeholder", "enter password here"); // add placeholder text 
-        // build first button
-        authLogin.append("login"); // add name to button
-        authLogin.classList.add("h"); // add a class for input so CSS applies style
-        authLogin.setAttribute("onclick", "rendDash('counselor')"); // add onclick action for button to render student info page and pass user to function
-    }
-    else if (userType == "advisor") { // customized title and instructions based on user type
-        // build first input
-        authInput1.classList.add("sm-frm"); // add a class for input so CSS applies style
-        authInput1.classList.add("v"); // add a class for input so CSS applies style
-        authInput1.setAttribute("placeholder", "enter username here"); // add placeholder text 
-        // build second input
-        authInput2.classList.add("sm-frm"); // add a class for input so CSS applies style
-        authInput2.classList.add("v"); // add a class for  input so CSS applies style
-        authInput2.setAttribute("placeholder", "enter password here"); // add placeholder text 
-        // build first button
-        authLogin.append("login"); // add name to button
-        authLogin.classList.add("h"); // add a class for input so CSS applies style
-        authLogin.setAttribute("onclick", "rendDash('advisor')"); // add onclick action for button to render student info page and pass user to function 
-    }
-    formWrapper.append(authInput1); // add input 1 to wrapper
-    formWrapper.append(authInput2); // add input 1 to wrapper
-    formWrapper.append(authLogin); // add first button to wrapper
+function rendAuth(userType) { // this will render a customized authentication page on demand
+    // first, clear any contents currently in the container
+    clearContainer(); 
+    
+    // render page title and instructions
+    var rendAuthText = document.getElementById("render_0"); 
+    var textWrapper = buildWrapper(); 
+    var title = buildH1(); 
+    var instructions = buildH3();
+    // customized title and instructions based on user type
     if (userType == "student") {
-        formWrapper.append(authNew); // add second button to wrapper for student only
-        console.log(formWrapper);
-        rendAuthForm.append(formWrapper); // append the html element with complete wrapper
+        title.append("Let's find your profile!"); 
+        instructions.append("Please enter your email address and cougar ID to continue... if this is your first time using this portal, click \"create profile\" below..."); 
+    }
+    else if (userType == "parent") { 
+        title.append("Let's find your student's profile!"); 
+        instructions.append("Please enter your student's cougar ID and the PIN (in your notification email) to continue...");
+    }
+    else if (userType == "counselor") { 
+        title.append("Login"); 
+        instructions.append("Please enter your username and password to continue..."); 
+    }
+    else if (userType == "advisor") {
+        title.append("Login"); 
+        instructions.append("Please enter your username and password to continue..."); 
+    }
+    textWrapper.append(title); 
+    textWrapper.append(instructions); 
+    //console.log(textWrapper); // for debugging
+    rendAuthText.append(textWrapper);
+
+    // render authentication form
+    var rendAuthForm = document.getElementById("render_1");
+    var formWrapper = buildWrapper(); 
+    var authInput1= buildTextInput(); 
+    var authInput2 = buildTextInput(); 
+    var authLogin = buildSmButton();
+    var authNew = buildSmButton(); 
+    // customized input and buttons based on user type
+    if (userType == "student") { 
+        // build first input
+        authInput1.classList.add("sm-frm"); 
+        authInput1.classList.add("v"); 
+        authInput1.setAttribute("placeholder", "enter email address here");
+        // build second input
+        authInput2.classList.add("sm-frm"); 
+        authInput2.classList.add("v"); 
+        authInput2.setAttribute("placeholder", "enter CID here");
+        // build first button
+        authLogin.append("find profile");
+        authLogin.classList.add("h");
+        authLogin.setAttribute("onclick", "rendProf('student')");
+        // build second button (for student screen only)
+        authNew.append("create profile");
+        authNew.classList.add("h"); 
+        authNew.setAttribute("onclick", "rendProf('new')"); 
+    }
+    else if (userType == "parent") {
+        // build first input
+        authInput1.classList.add("sm-frm"); 
+        authInput1.classList.add("v"); 
+        authInput1.setAttribute("placeholder", "enter your student's CID here"); 
+        // build second input
+        authInput2.classList.add("sm-frm"); 
+        authInput2.classList.add("v"); 
+        authInput2.setAttribute("placeholder", "enter PIN here");
+        // build first button
+        authLogin.append("find student"); 
+        authLogin.classList.add("h"); 
+        authLogin.setAttribute("onclick", "rendProf('parent')");
+        // build second button
+        authNew.append("create profile"); 
+        authNew.classList.add("h"); 
+        authNew.setAttribute("onclick", "rendProf('new')"); 
+    }
+    else if (userType == "counselor") { 
+        // build first input
+        authInput1.classList.add("sm-frm"); 
+        authInput1.classList.add("v"); 
+        authInput1.setAttribute("placeholder", "enter username here");
+        // build second input
+        authInput2.classList.add("sm-frm"); 
+        authInput2.classList.add("v"); 
+        authInput2.setAttribute("placeholder", "enter password here");
+        // build first button
+        authLogin.append("login");
+        authLogin.classList.add("h"); 
+        authLogin.setAttribute("onclick", "rendDash('counselor')"); 
+    }
+    else if (userType == "advisor") { 
+        // build first input
+        authInput1.classList.add("sm-frm"); 
+        authInput1.classList.add("v"); 
+        authInput1.setAttribute("placeholder", "enter username here"); 
+        // build second input
+        authInput2.classList.add("sm-frm"); 
+        authInput2.classList.add("v"); 
+        authInput2.setAttribute("placeholder", "enter password here"); 
+        // build first button
+        authLogin.append("login"); 
+        authLogin.classList.add("h"); 
+        authLogin.setAttribute("onclick", "rendDash('advisor')"); 
+    }
+    formWrapper.append(authInput1); 
+    formWrapper.append(authInput2); 
+    formWrapper.append(authLogin); 
+    if (userType == "student") { // add second button to wrapper for student only
+        formWrapper.append(authNew);
+        //console.log(formWrapper); // for debugging
+        rendAuthForm.append(formWrapper);
     }
     else {
-        console.log(formWrapper);
-        rendAuthForm.append(formWrapper); // append the html element with complete wrapper
+        //console.log(formWrapper); // for debugging
+        rendAuthForm.append(formWrapper);
     }
 }
 
-function rendProf(userType) { // function that builds student profile page
-    clearContainer(); // first, clear any contents currently in the container
-    // render text
-    var rendProfileText = document.getElementById("render_0"); // assign a variable to represent where elements will go in html
-    var textWrapper = buildWrapper(); // build a wrapper and assign it to a variable
-    var title = buildH1(); // build an h1 element and assign it as the title
-    var instructions = buildH3(); // build an h3 element and assign it as the instructions
-    if (userType == "student") { // customized title and instructions based on user type
-        title.append("Is this you?"); // add title text
-        instructions.append("If this is your information, press \"continue\"... if not, press \"retry\"..."); // add instuction text 
+function rendProf(userType) { // this will render a customized profile page on demand
+   // first, clear any contents currently in the container
+    clearContainer(); 
+    
+    // render page title and instructions
+    var rendProfileText = document.getElementById("render_0"); 
+    var textWrapper = buildWrapper(); 
+    var title = buildH1(); 
+    var instructions = buildH3();
+    // customized title and instructions based on user type
+    if (userType == "student") { 
+        title.append("Is this you?"); 
+        instructions.append("If this is your information, press \"continue\"... if not, press \"retry\"..."); 
     }
-    else if (userType == "parent") { // customized title and instructions based on user type
-        title.append("Is this your student?"); // add title text
-        instructions.append("If this is your student's information, press \"continue\"\"retry\"..."); // add instuction text 
+    else if (userType == "parent") { 
+        title.append("Is this your student?"); 
+        instructions.append("If this is your student's information, press \"continue\"\"retry\"..."); 
     }
-    else if (userType == "counselor") { // customized title and instructions based on user type
-        title.append("Student Profile"); // add title text
-        instructions.append("Make sure all studnet information is up to date and share notes with the student's advisor"); // add instuction text 
+    else if (userType == "counselor") { 
+        title.append("Student Profile"); 
+        instructions.append("Make sure all studnet information is up to date and share notes with the student's advisor"); 
     }
-    else if (userType == "advisor") { // customized title and instructions based on user type
-        title.append("Student Profile"); // add title text
-        instructions.append("Make sure all studnet information is up to date and share notes with the student's counselor"); // add instuction text 
+    else if (userType == "advisor") { 
+        title.append("Student Profile"); 
+        instructions.append("Make sure all studnet information is up to date and share notes with the student's counselor");  
     }
-    else if (userType == "new") { // customized title and instructions based on user type
-        title.append("Student Profile"); // add title text
-        instructions.append("Enter information into each field and press \"create profile\""); // add instuction text 
+    else if (userType == "new") { 
+        title.append("Student Profile"); 
+        instructions.append("Enter information into each field and press \"create profile\"");
     }
-    textWrapper.append(title); // add title to wrapper
-    textWrapper.append(instructions); // add instructions to wrapper
-    console.log(textWrapper);
-    rendProfileText.append(textWrapper); // append the html element with complete wrapper
-    // student data
-    var rendProfileData = document.getElementById("render_1"); // assign a variable to represent where elements will go in html
-    var dataWrapper = buildWrapper(); // build a wrapper and assign it to a variable
-    var dataHeaders = ["First Name", "Last Name", "CID", "Student Email", "Parent Email", "School"]; // // define and name demo array that will be used to display headers
-    var dataDemos = ["Jane", "Doe", "1234567", "jane.doe@reyn.org", "mama.doe@rgmail.com", "HS2"]; // define and name demo array that will be used to display data
-    if (userType == "student" || userType == "parent") { // checking user type
-        var dataCell; // define and name variable for use in proper scope
-        var dataWrapper = buildWrapper(); // build a wrapper and assign it to a variable
+    textWrapper.append(title); 
+    textWrapper.append(instructions); 
+    //console.log(textWrapper); // for debugging
+    rendProfileText.append(textWrapper); 
+    
+    // render profile data
+    var rendProfileData = document.getElementById("render_1"); 
+    var dataWrapper = buildWrapper(); 
+    var dataHeaders = ["First Name", "Last Name", "CID", "Student Email", "Parent Email", "School"]; // move to global????
+    var dataDemos = ["Jane", "Doe", "1234567", "jane.doe@reyn.org", "mama.doe@rgmail.com", "HS2"]; // move to global?????
+    // customized profile data contents based on user type
+    if (userType == "student" || userType == "parent") { 
+        var dataCell; 
+        var dataWrapper = buildWrapper();
         for (i=0; i < dataHeaders. length; i++) {
-            var dataCell = buildDataCell(); // call build data cell method
-            var header = buildPara(); // call build paragraph method
-            var data = buildPara(); // call build paragraph method
-            header.setAttribute("id", "data_header"); // add id to header for css styling
-            header.append(dataHeaders[i]); // add text from array at index i to header
-            data.setAttribute("id", "data_cell"); // add id to data for css styling
-            data.append(dataDemos[i]); // add text from array at index i to data
+            var dataCell = buildDataCell(); 
+            var header = buildPara(); 
+            var data = buildPara(); 
+            header.setAttribute("id", "data_header"); 
+            header.append(dataHeaders[i]); 
+            data.setAttribute("id", "data_cell"); 
+            data.append(dataDemos[i]); 
             dataCell.setAttribute("id", "cell6");
-            dataCell.append(header); // add complete header to cell
-            dataCell.append(data); // add complete data to cell
-            dataWrapper.append(dataCell); // add cell to wrapper
+            dataCell.append(header); 
+            dataCell.append(data);
+            dataWrapper.append(dataCell);
         }
     }
-    if (userType == "counselor" || userType == "advisor") { // checking user type
-        var dataCell; // define and name variable for use in proper scope
-        var dataWrapper = buildWrapper(); // build a wrapper and assign it to a variable
+    if (userType == "counselor" || userType == "advisor") { 
+        var dataCell; 
+        var dataWrapper = buildWrapper(); 
         for (i=0; i < dataHeaders. length; i++) {
-            var dataCell = buildDataCell(); // call build data cell method
-            var header = buildPara(); // call build paragraph method
-            var data = buildPara(); // call build paragraph method
+            var dataCell = buildDataCell(); 
+            var header = buildPara(); 
+            var data = buildPara(); 
             var editInput = buildTextInput();
             var editButton = buildSmButton();
-            header.setAttribute("id", "data_header"); // add id to header for css styling
-            header.append(dataHeaders[i]); // add text from array at index i to header
-            data.setAttribute("id", "data_cell"); // add id to data for css styling
-            data.append(dataDemos[i]); // add text from array at index i to data
+            header.setAttribute("id", "data_header"); 
+            header.append(dataHeaders[i]); 
+            data.setAttribute("id", "data_cell"); 
+            data.append(dataDemos[i]); 
             editButton.append("edit");
             dataCell.setAttribute("id", "cell6");
-            dataCell.append(header); // add complete header to cell
-            dataCell.append(data); // add complete data to cell
+            dataCell.append(header); 
+            dataCell.append(data); 
             dataCell.append(editInput);
             dataCell.append(editButton);
-            dataWrapper.append(dataCell); // add cell to wrapper
+            dataWrapper.append(dataCell); 
         }
     }
-    if (userType == "new") { // checking user type
-        var dataCell; // define and name variable for use in proper scope
-        var dataWrapper = buildWrapper(); // build a wrapper and assign it to a variable
+    if (userType == "new") { 
+        var dataCell; 
+        var dataWrapper = buildWrapper(); 
         for (i=0; i < dataHeaders. length; i++) {
-            var dataCell = buildDataCell(); // call build data cell method
-            var header = buildPara(); // call build paragraph method
+            var dataCell = buildDataCell(); 
+            var header = buildPara(); 
             var editInput = buildTextInput();
-            header.setAttribute("id", "data_header"); // add id to header for css styling
-            header.append(dataHeaders[i]); // add text from array at index i to header
+            header.setAttribute("id", "data_header"); 
+            header.append(dataHeaders[i]); 
             dataCell.setAttribute("id", "cell6");
-            dataCell.append(header); // add complete header to cell
+            dataCell.append(header);
             dataCell.append(editInput);
-            dataWrapper.append(dataCell); // add cell to wrapper
+            dataWrapper.append(dataCell);
         }
     }
-    console.log(dataWrapper);
-    rendProfileData.append(dataWrapper); // append the html element with complete wrapper
+    //console.log(dataWrapper); // for debugging
+    rendProfileData.append(dataWrapper); 
+
     // render buttons
-    var rendProfButtons = document.getElementById("render_2"); // assign a variable to represent where elements will go in html
-    var buttonWrapper = buildWrapper(); // build a wrapper and assign it to a variable
-    if (userType == "student") { // checking user type
+    var rendProfButtons = document.getElementById("render_2"); 
+    var buttonWrapper = buildWrapper(); 
+    // customized buttons based on user type
+    if (userType == "student") { 
         var profCont = buildSmButton();
         var profRetry = buildSmButton();
         profCont.classList.add("h");
@@ -351,7 +362,7 @@ function rendProf(userType) { // function that builds student profile page
         buttonWrapper.append(profRetry);
         buttonWrapper.append(profCont);
     }
-    if (userType == "parent") { // checking user type
+    if (userType == "parent") { 
         var profCont = buildSmButton();
         var profRetry = buildSmButton();
         profCont.classList.add("h");
@@ -363,7 +374,7 @@ function rendProf(userType) { // function that builds student profile page
         buttonWrapper.append(profRetry);
         buttonWrapper.append(profCont);
     }
-    if (userType == "new") { // checking user type
+    if (userType == "new") {
         var profCont = buildSmButton();
         var profBack = buildSmButton();
         profCont.classList.add("h");
@@ -375,28 +386,41 @@ function rendProf(userType) { // function that builds student profile page
         buttonWrapper.append(profBack);
         buttonWrapper.append(profCont);
     }
+    //console.log(buttonWrapper); // for debugging
     rendProfButtons.append(buttonWrapper);
-    // render note section
-    if (userType == "counselor" || userType == "advisor") { // customized title and instructions based on user type
-        var rendNoteText = document.getElementById("render_3"); // assign a variable to represent where elements will go in html
-        var textWrapper = buildWrapper(); // build a wrapper and assign it to a variable
-        var title = buildH1(); // build an h1 element and assign it as the title
-        var instructions = buildH3(); // build an h3 element and assign it as the instructions
-        title.append("Notes Log"); // add title text
-        instructions.append("Click the add note button below to add a note for this student... make sure to include the current tuerm (e.g., autumn 2021)..."); // add instuction text 
-        textWrapper.append(title); // add title to wrapper
-        textWrapper.append(instructions); // add instructions to wrapper
-        console.log(textWrapper);
-        rendNoteText.append(textWrapper); // append the html element with complete wrapper
+    
+    // render note section for counselor and advisor only
+    if (userType == "counselor" || userType == "advisor") { 
+        var rendNoteText = document.getElementById("render_3"); 
+        var textWrapper = buildWrapper(); 
+        var title = buildH1(); 
+        var instructions = buildH3();
+        title.append("Notes Log"); 
+        instructions.append("Click the add note button below to add a note for this student... make sure to include the current tuerm (e.g., autumn 2021)...");
+        textWrapper.append(title); 
+        textWrapper.append(instructions); 
+        //console.log(textWrapper); // for debugging
+        rendNoteText.append(textWrapper); 
     }
 }
 
-
-function rendDash(userType) { // function that builds student profile page
-    clearContainer(); // first, clear any contents currently in the container
-    if (userType == "counselor" || userType == "advisor") {
+function rendDash(userType) { // this will render the dashboard on demand
+    // first, clear any contents currently in the container
+    clearContainer(); 
+    
+    // customize and show logout with username
+    if (userType == "counselor") {
+        userName = " David"
+        addName = document.getElementById("logout");
+        addName.append(userName);
         showLogout();
     }
-}
+    if (userType == "advisor") {
+        userName = " Simonne"
+        addName = document.getElementById("logout");
+        addName.append(userName);
+        showLogout();
+    }
 
-// below is template of each element grouping that could be rendered for reference and use in functions
+
+}

@@ -13,9 +13,7 @@ body {
     font-size: 16px;
     margin: 0;
     padding: 0;
-    overflow-wrap: break-word;
 }
-
 
 /* hover effects for all clickable elements */
 
@@ -35,7 +33,7 @@ header {
     left: 0;
     width: 100%;
     min-height: 20px;
-    display: flex;                  /* establish flex container */
+    display: flex; /* establish flex container */
     justify-content: space-between; /* keep space between even so three elements remain left, cetner, right */
     background-color: rgb(60, 121, 253);
     color: white;
@@ -46,17 +44,9 @@ header {
     box-shadow: 0 0 7.5px rgba(0,0,0,0.8);
 }
 
-/* .header-title { NEVER CHANGED????
-
-} */
-
 .header-logout {
     display: none;
 }
-
-/* .header-user { NOT USED???
-    
-} */
 
 /* container & wrappers style */
 
@@ -71,6 +61,7 @@ header {
     border: 1px solid rgba(0, 87, 201, 0.5);
     border-radius: 5px;
     box-shadow: 0 0 7.5px rgba(0,0,0,0.8);
+    overflow-wrap: break-word;
 }
 
 .h {
@@ -89,31 +80,6 @@ header {
     margin: 1% auto;
     line-height: 1.5;
 }
-
-/* .data-header {
-    display: inline-block; 
-    position: relative;
-    text-align: center;
-    margin: 1% auto;
-    text-decoration: underline;
-} */
-
-/* <div class="wrapper">        
-<!-- wrappers for each data header -->
-    <p class="data-header">Header 1</p>
-    <p class="data-header">Header 2</p> 
-    <p class="data-header">Header 3</p> 
-    <p class="data-header">Header 4</p> 
-    <p class="data-header">Header 5</p> 
-    <p class="data-header">Header 5</p> 
-    <p class="data-header">Header 6</p> 
-    <p class="data-header">Header 7</p> 
-    <p class="data-header">Header 8</p> 
-    <p class="data-header">Header 9</p> 
-    <p class="data-header">Header 10</p> 
-    <p class="data-header">Header 11</p> 
-    <p class="data-header">Header 12</p>  
-</div>  */
 
 .data-cell {
     display: inline-block;
@@ -177,7 +143,7 @@ footer {
     left: 0;
     width: 100%;
     min-height: 20px;
-    display: flex;                  /* establish flex container */
+    display: flex;
     align-items: center;
     justify-content: center;
 }
@@ -215,7 +181,7 @@ footer {
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
     header {
         font-size: 100%;
     }
@@ -227,18 +193,10 @@ footer {
     .wrapper {
         width: 100%;
     }
-  
-    /* .data-cell {
-
-    } */
 
     #cell6 {
         width: 15.5%;
     }
-
-    /* .data-cell {
-        width: 7%;
-    } */
 
     .lg-btn {
         width: 22%;
