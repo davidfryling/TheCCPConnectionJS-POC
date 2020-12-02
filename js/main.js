@@ -23,16 +23,7 @@ const newRequest = { // define and name empty dictionary that will be used to st
     reg : "",
     note: ""
 };
-const janeD = { // define and name demo dictionary that will be used to display data later
-    fName : "Jane",
-    lName : "Doe",
-    cid : "1234567",
-    sEmail : "jane.doe@reyn.org",
-    pEmail : "mama.doe@reyn.org",
-    school : "HS2",
-    ssid : "",
-    maxCrd : ""
-}
+
 const janeDRequest = { // define and name demo dictionary that will be used to display data later
     subj : "MATH",
     courseN : "1149",
@@ -108,7 +99,7 @@ function buildTextInput() { // this will be used to build an input element on de
 }
 
 function rendHome() {  // function that builds landing page
-    clearContainer(); // first, clear any contents remaining in the container
+    clearContainer(); // first, clear any contents currently in the container
     hideLogout(); // make sure logout is hidden when returning home
     // render text
     var rendHomeText = document.getElementById("render_0"); // assign a variable to represent where elements will go in html
@@ -140,7 +131,7 @@ function rendHome() {  // function that builds landing page
 }
 
 function rendAuth(userType) { // function that builds authentication page
-    clearContainer(); // first, clear any contents remaining in the container
+    clearContainer(); // first, clear any contents currently in the container
     // render text
     var rendAuthText = document.getElementById("render_0"); // assign a variable to represent where elements will go in html
     var textWrapper = buildWrapper(); // build a wrapper and assign it to a variable
@@ -185,11 +176,11 @@ function rendAuth(userType) { // function that builds authentication page
         // build first button
         authLogin.append("find profile"); // add name to button
         authLogin.classList.add("h"); // add a class for input so CSS applies style
-        authLogin.setAttribute("onclick", "rendSID('student')"); // add onclick action for button to render student info page and pass user to function
+        authLogin.setAttribute("onclick", "rendProf('student')"); // add onclick action for button to render student info page and pass user to function
         // build second button
         authNew.append("create profile"); // add name to button
         authNew.classList.add("h"); // add a class for input so CSS applies style
-        authNew.setAttribute("onclick", "rendSID('new')"); // add onclick action for button to render student info page and pass user to function
+        authNew.setAttribute("onclick", "rendProf('new')"); // add onclick action for button to render student info page and pass user to function
     }
     else if (userType == "parent") { // customized title and instructions based on user type
         // build first input
@@ -203,11 +194,11 @@ function rendAuth(userType) { // function that builds authentication page
         // build first button
         authLogin.append("find student"); // add name to button
         authLogin.classList.add("h"); // add a class for input so CSS applies style
-        authLogin.setAttribute("onclick", "rendSID('parent')"); // add onclick action for button to render student info page and pass user to function
+        authLogin.setAttribute("onclick", "rendProf('parent')"); // add onclick action for button to render student info page and pass user to function
         // build second button
         authNew.append("create profile"); // add name to button
         authNew.classList.add("h"); // add a class for input so CSS applies style
-        authNew.setAttribute("onclick", "rendSID('new')"); // add onclick action for button to render student info page and pass user to function 
+        authNew.setAttribute("onclick", "rendProf('new')"); // add onclick action for button to render student info page and pass user to function 
     }
     else if (userType == "counselor") { // customized title and instructions based on user type
         // build first input
@@ -251,6 +242,56 @@ function rendAuth(userType) { // function that builds authentication page
     }
 }
 
+function rendProf(userType) { // function that builds student profile page
+    clearContainer(); // first, clear any contents currently in the container
+    // render text
+    var rendProfileText = document.getElementById("render_0"); // assign a variable to represent where elements will go in html
+    var textWrapper = buildWrapper(); // build a wrapper and assign it to a variable
+    var title = buildH1(); // build an h1 element and assign it as the title
+    var instructions = buildH3(); // build an h3 element and assign it as the instructions
+    if (userType == "student") { // customized title and instructions based on user type
+        title.append("Is this you?"); // add title text
+        instructions.append("If this is your information, press \"continue\""); // add instuction text 
+    }
+    else if (userType == "parent") { // customized title and instructions based on user type
+        title.append("Is this your student?"); // add title text
+        instructions.append("If this is your student's information, press \"continue\""); // add instuction text 
+    }
+    else if (userType == "counselor") { // customized title and instructions based on user type
+        title.append("Student Profile"); // add title text
+        instructions.append("Make sure all studnet information is up to date and share notes with the student's advisor"); // add instuction text 
+    }
+    else if (userType == "advisor") { // customized title and instructions based on user type
+        title.append("Student Profile"); // add title text
+        instructions.append("Make sure all studnet information is up to date and share notes with the student's counselor"); // add instuction text 
+    }
+    textWrapper.append(title); // add title to wrapper
+    textWrapper.append(instructions); // add instructions to wrapper
+    console.log(textWrapper);
+    rendProfileText.append(textWrapper); // append the html element with complete wrapper
+    // student data
+    var rendProfileData = document.getElementById("render_1"); // assign a variable to represent where elements will go in html
+    var dataWrapper = buildWrapper(); // build a wrapper and assign it to a variable
+    var dataHeaders = ["First Name", "Last Name", "CID", "Student Email", "Parent Email", "School"];
+    var dataDemos = ["Jane", "Doe", "1234567", "jane.doe@reyn.org", "mama.doe@reyn.org", "HS2"]; // define and name demo dictionary that will be used to display data later
+    if (userType == "student" || userType == "parent") {
+        for (i=0; i < dataHeaders.length; i++) {
+            
+        }
+    }
+    var authInput1= buildTextInput(); // build an input and assign it to a variable
+    var authInput2 = buildTextInput(); // build another input and assign it to a variable
+    var authLogin = buildSmButton(); // build two buttons and assign it to a variable
+    var authNew = buildSmButton(); // build another button for students only
+}
+
+
+function rendDASH(userType) { // function that builds student profile page
+    clearContainer(); // first, clear any contents currently in the container
+    if (userType == "counselor" || userType == "advisor") {
+        showLogout();
+    }
+}
 
 // below is template of each element grouping that could be rendered for reference and use in functions
 

@@ -86,6 +86,7 @@ header {
     text-align: center;
     padding: 2%;
     margin: 1% auto;
+    line-height: 1.5;
 }
 
 /* .data-header {
