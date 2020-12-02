@@ -1,28 +1,15 @@
 var userType; // define and name variable that will track each user type later for different functions
 var userName; // define and name variable that will track each user name later for different functions
-const newStudent = { // define and name empty dictionary that will be used to store data for a new student later
-    fName : "",
-    lName : "",
-    cid : "",
-    sEmail : "",
-    pEmail : "",
-    school : "",
-    ssid : "",
-    maxCrd : ""
-};
-const newRequest = { // define and name empty dictionary that will be used to store data for a new course request
-    subj : "",
-    courseN : "",
-    sectN : "",
-    synN : "",
-    crdHrs : "",
-    cName : "",
-    daysTimes : "",
-    parentApp : "",
-    counsApp : "",
-    reg : "",
-    note: ""
-};
+
+// var currentWidth = window.addEventListener("resize", function(event) { // define and name variable that constantly notes and returns the current screen width for later use
+//     var newWidth = window.innerWidth;
+//     return newWidth;
+// });
+
+// function getWidth() {
+//     var newWidth = window.innerWidth;
+//     return newWidth;
+// }
 
 const janeDRequest = { // define and name demo dictionary that will be used to display data later
     subj : "MATH",
@@ -98,6 +85,25 @@ function buildTextInput() { // this will be used to build an input element on de
     return input;
 }
 
+function buildDataCell() { // this will be used to build the wrapper on demand
+    var cell = document.createElement("div");
+    cell.classList.add("data-cell");
+    console.log(cell);
+    return cell;
+}
+
+function buildPara() {
+    var para = document.createElement("p")
+    console.log(para);
+    return para;
+}
+
+function buildBreak(){
+    var br = document.createElement("br");
+    console.log(br);
+    return br;
+}
+
 function rendHome() {  // function that builds landing page
     clearContainer(); // first, clear any contents currently in the container
     hideLogout(); // make sure logout is hidden when returning home
@@ -115,17 +121,13 @@ function rendHome() {  // function that builds landing page
     // render buttons
     var rendHomeButtons = document.getElementById("render_1"); // assign a variable to represent where elements will go in html
     var buttonWrapper = buildWrapper(); // build a wrapper and assign it to a variable
-    var homeButtons = []; // create an empty array to hold completed buttons
     var buttonNames = ["student", "parent", "counselor", "advisor"] // create array of button names
     for (i = 0; i < buttonNames.length; i++) { // run a for loop to build a button for each element in the array
         let button = buildLgButton(); // call build button method
         button.classList.add("h"); // add a class for button so CSS knows to make display element inline or block
         button.setAttribute("onclick", "rendAuth(" + "'" + buttonNames[i] + "'" + ")"); // add onclick action for each button to render authentication page and pass user to function
         button.append(buttonNames[i]); // add names to buttons
-        homeButtons.push(button); // add complete button to an array
-    }
-    for (i = 0; i < homeButtons.length; i++) { // run for loop to add each button to the wrapper
-        buttonWrapper.append(homeButtons[i]); // add button to wrapper each iteration
+        buttonWrapper.append(button); // add button to wrapper each iteration
     }
     rendHomeButtons.append(buttonWrapper); // append the html element with complete wrapper
 }
@@ -251,11 +253,11 @@ function rendProf(userType) { // function that builds student profile page
     var instructions = buildH3(); // build an h3 element and assign it as the instructions
     if (userType == "student") { // customized title and instructions based on user type
         title.append("Is this you?"); // add title text
-        instructions.append("If this is your information, press \"continue\""); // add instuction text 
+        instructions.append("If this is your information, press \"continue\"... if not, press \"retry\"..."); // add instuction text 
     }
     else if (userType == "parent") { // customized title and instructions based on user type
         title.append("Is this your student?"); // add title text
-        instructions.append("If this is your student's information, press \"continue\""); // add instuction text 
+        instructions.append("If this is your student's information, press \"continue\"\"retry\"..."); // add instuction text 
     }
     else if (userType == "counselor") { // customized title and instructions based on user type
         title.append("Student Profile"); // add title text
@@ -265,6 +267,10 @@ function rendProf(userType) { // function that builds student profile page
         title.append("Student Profile"); // add title text
         instructions.append("Make sure all studnet information is up to date and share notes with the student's counselor"); // add instuction text 
     }
+    else if (userType == "new") { // customized title and instructions based on user type
+        title.append("Student Profile"); // add title text
+        instructions.append("Enter information into each field and press \"create profile\""); // add instuction text 
+    }
     textWrapper.append(title); // add title to wrapper
     textWrapper.append(instructions); // add instructions to wrapper
     console.log(textWrapper);
@@ -272,21 +278,121 @@ function rendProf(userType) { // function that builds student profile page
     // student data
     var rendProfileData = document.getElementById("render_1"); // assign a variable to represent where elements will go in html
     var dataWrapper = buildWrapper(); // build a wrapper and assign it to a variable
-    var dataHeaders = ["First Name", "Last Name", "CID", "Student Email", "Parent Email", "School"];
-    var dataDemos = ["Jane", "Doe", "1234567", "jane.doe@reyn.org", "mama.doe@reyn.org", "HS2"]; // define and name demo dictionary that will be used to display data later
-    if (userType == "student" || userType == "parent") {
-        for (i=0; i < dataHeaders.length; i++) {
-            
+    var dataHeaders = ["First Name", "Last Name", "CID", "Student Email", "Parent Email", "School"]; // // define and name demo array that will be used to display headers
+    var dataDemos = ["Jane", "Doe", "1234567", "jane.doe@reyn.org", "mama.doe@rgmail.com", "HS2"]; // define and name demo array that will be used to display data
+    if (userType == "student" || userType == "parent") { // checking user type
+        var dataCell; // define and name variable for use in proper scope
+        var dataWrapper = buildWrapper(); // build a wrapper and assign it to a variable
+        for (i=0; i < dataHeaders. length; i++) {
+            var dataCell = buildDataCell(); // call build data cell method
+            var header = buildPara(); // call build paragraph method
+            var data = buildPara(); // call build paragraph method
+            header.setAttribute("id", "data_header"); // add id to header for css styling
+            header.append(dataHeaders[i]); // add text from array at index i to header
+            data.setAttribute("id", "data_cell"); // add id to data for css styling
+            data.append(dataDemos[i]); // add text from array at index i to data
+            dataCell.setAttribute("id", "cell6");
+            dataCell.append(header); // add complete header to cell
+            dataCell.append(data); // add complete data to cell
+            dataWrapper.append(dataCell); // add cell to wrapper
         }
     }
-    var authInput1= buildTextInput(); // build an input and assign it to a variable
-    var authInput2 = buildTextInput(); // build another input and assign it to a variable
-    var authLogin = buildSmButton(); // build two buttons and assign it to a variable
-    var authNew = buildSmButton(); // build another button for students only
+    if (userType == "counselor" || userType == "advisor") { // checking user type
+        var dataCell; // define and name variable for use in proper scope
+        var dataWrapper = buildWrapper(); // build a wrapper and assign it to a variable
+        for (i=0; i < dataHeaders. length; i++) {
+            var dataCell = buildDataCell(); // call build data cell method
+            var header = buildPara(); // call build paragraph method
+            var data = buildPara(); // call build paragraph method
+            var editInput = buildTextInput();
+            var editButton = buildSmButton();
+            header.setAttribute("id", "data_header"); // add id to header for css styling
+            header.append(dataHeaders[i]); // add text from array at index i to header
+            data.setAttribute("id", "data_cell"); // add id to data for css styling
+            data.append(dataDemos[i]); // add text from array at index i to data
+            editButton.append("edit");
+            dataCell.setAttribute("id", "cell6");
+            dataCell.append(header); // add complete header to cell
+            dataCell.append(data); // add complete data to cell
+            dataCell.append(editInput);
+            dataCell.append(editButton);
+            dataWrapper.append(dataCell); // add cell to wrapper
+        }
+    }
+    if (userType == "new") { // checking user type
+        var dataCell; // define and name variable for use in proper scope
+        var dataWrapper = buildWrapper(); // build a wrapper and assign it to a variable
+        for (i=0; i < dataHeaders. length; i++) {
+            var dataCell = buildDataCell(); // call build data cell method
+            var header = buildPara(); // call build paragraph method
+            var editInput = buildTextInput();
+            header.setAttribute("id", "data_header"); // add id to header for css styling
+            header.append(dataHeaders[i]); // add text from array at index i to header
+            dataCell.setAttribute("id", "cell6");
+            dataCell.append(header); // add complete header to cell
+            dataCell.append(editInput);
+            dataWrapper.append(dataCell); // add cell to wrapper
+        }
+    }
+    console.log(dataWrapper);
+    rendProfileData.append(dataWrapper); // append the html element with complete wrapper
+    // render buttons
+    var rendProfButtons = document.getElementById("render_2"); // assign a variable to represent where elements will go in html
+    var buttonWrapper = buildWrapper(); // build a wrapper and assign it to a variable
+    if (userType == "student") { // checking user type
+        var profCont = buildSmButton();
+        var profRetry = buildSmButton();
+        profCont.classList.add("h");
+        profCont.setAttribute("onclick", "rendDash('student')");
+        profCont.append("continue");
+        profRetry.classList.add("h");
+        profRetry.setAttribute("onclick", "rendAuth('student')");
+        profRetry.append("retry");
+        buttonWrapper.append(profRetry);
+        buttonWrapper.append(profCont);
+    }
+    if (userType == "parent") { // checking user type
+        var profCont = buildSmButton();
+        var profRetry = buildSmButton();
+        profCont.classList.add("h");
+        profCont.setAttribute("onclick", "rendDash('parent')");
+        profCont.append("continue");
+        profRetry.classList.add("h");
+        profRetry.setAttribute("onclick", "rendAuth('parent')");
+        profRetry.append("retry");
+        buttonWrapper.append(profRetry);
+        buttonWrapper.append(profCont);
+    }
+    if (userType == "new") { // checking user type
+        var profCont = buildSmButton();
+        var profBack = buildSmButton();
+        profCont.classList.add("h");
+        profCont.setAttribute("onclick", "rendProf('student')");
+        profCont.append("create");
+        profBack.classList.add("h");
+        profBack.setAttribute("onclick", "rendAuth('student')");
+        profBack.append("back");
+        buttonWrapper.append(profBack);
+        buttonWrapper.append(profCont);
+    }
+    rendProfButtons.append(buttonWrapper);
+    // render note section
+    if (userType == "counselor" || userType == "advisor") { // customized title and instructions based on user type
+        var rendNoteText = document.getElementById("render_3"); // assign a variable to represent where elements will go in html
+        var textWrapper = buildWrapper(); // build a wrapper and assign it to a variable
+        var title = buildH1(); // build an h1 element and assign it as the title
+        var instructions = buildH3(); // build an h3 element and assign it as the instructions
+        title.append("Notes Log"); // add title text
+        instructions.append("Click the add note button below to add a note for this student... make sure to include the current tuerm (e.g., autumn 2021)..."); // add instuction text 
+        textWrapper.append(title); // add title to wrapper
+        textWrapper.append(instructions); // add instructions to wrapper
+        console.log(textWrapper);
+        rendNoteText.append(textWrapper); // append the html element with complete wrapper
+    }
 }
 
 
-function rendDASH(userType) { // function that builds student profile page
+function rendDash(userType) { // function that builds student profile page
     clearContainer(); // first, clear any contents currently in the container
     if (userType == "counselor" || userType == "advisor") {
         showLogout();
@@ -294,32 +400,3 @@ function rendDASH(userType) { // function that builds student profile page
 }
 
 // below is template of each element grouping that could be rendered for reference and use in functions
-
-/* <div class="wrapper"> 
-    <h1>Page Title</h1>
-    <h3>Instructions</h3>
-</div>    
-<div class="wrapper">  
-    <!-- cell wrapper for each peice of data -->
-        <p class="data-cell">Data</p>
-        <p class="data-cell">Data</p>
-        <p class="data-cell">Data</p>
-        <p class="data-cell">Data</p>
-        <p class="data-cell">Data</p>
-        <p class="data-cell">Data</p>
-        <p class="data-cell">Data</p>
-        <p class="data-cell">Data</p>
-        <p class="data-cell">Data</p>
-        <p class="data-cell">Data</p>
-        <p class="data-cell">Data</p>
-        <p class="data-cell">Data</p>
-</div>
-<div class="wrapper">    
-    <button class="lg-btn h">large button</button>
-    <button class="sm-btn h">small button</button>
-</div>
-<div class="wrapper">   
-    <input class="lg-frm h" type="text" placeholder="form field">
-    <input class="sm-frm h" type="text" placeholder="form field">
-    <button class="sm-btn v">form button</button>
-</div> */

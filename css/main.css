@@ -13,6 +13,7 @@ body {
     font-size: 16px;
     margin: 0;
     padding: 0;
+    overflow-wrap: break-word;
 }
 
 
@@ -118,7 +119,18 @@ header {
     display: inline-block;
     position: relative;
     text-align: center;
+    vertical-align: text-top;
     margin: 1% auto;
+
+}
+
+#data_header {
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+#data_cell {
+    font-size: 75%;
 }
 
 .lg-btn,
@@ -189,13 +201,9 @@ footer {
       font-size: 150%;
     }
 
-    .data-header {
-        display: none;
-      }
-
     .data-cell  {
         width: 100%;
-        font-size: 150%;
+        font-size: 125%;
     }
 
     .lg-btn, 
@@ -220,13 +228,17 @@ footer {
         width: 100%;
     }
   
-    .data-header {
-        width: 7%;
+    /* .data-cell {
+
+    } */
+
+    #cell6 {
+        width: 15.5%;
     }
 
-    .data-cell {
+    /* .data-cell {
         width: 7%;
-    }
+    } */
 
     .lg-btn {
         width: 22%;
