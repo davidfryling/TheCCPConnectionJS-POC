@@ -183,7 +183,7 @@ button:hover,
     }
     
     .container {
-        margin-top: 250px;                
+        margin-top: 260px;                
     }
 
     .wrapper {
@@ -223,8 +223,8 @@ button:hover,
     }
 
     footer img {
-        height: 25%;
-        width: 25%;
+        height: 40%;
+        width: 40%;
     }
 }
 
