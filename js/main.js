@@ -476,16 +476,7 @@ function rendDash(userType) { // this will render the dashboard on demand
     clearContainer(); 
     
     // customize and show logout with username
-    if (userType == "counselor") {
-        userName = " David"
-        addName = document.getElementById("logout");
-        addName.append(userName);
-        showLogout();
-    }
-    if (userType == "advisor") {
-        userName = " Simonne"
-        addName = document.getElementById("logout");
-        addName.append(userName);
+    if (userType == "counselor" || userType == "advisor") {
         showLogout();
     }
 

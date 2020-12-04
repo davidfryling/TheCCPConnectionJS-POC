@@ -211,13 +211,10 @@ button:hover,
     }
 
     .cell-frm,
-    .reg-frm {
+    .reg-frm,
+    .note-frm {
         width: 75%;
         font-size: 100%;
-    }
-
-    .note-frm {
-
     }
 
     input[type="checkbox"] {
