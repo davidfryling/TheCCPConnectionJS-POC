@@ -65,10 +65,17 @@ function buildSmButton() { // this will be used to build a button element with s
 }
 
 function buildTextInput() { // this will be used to build a text input element on demand
-    var input = document.createElement("input");
-    input.setAttribute("type", "text");
-    //console.log(input); // for debugging
-    return input;
+    var txtInput = document.createElement("input");
+    txtInput.setAttribute("type", "text");
+    //console.log(txtInput); // for debugging
+    return txtInput;
+}
+
+function buildLgInput() { // this will be used to build a large text input element on demand
+    var lgInput = document.createElement("input");
+    lgInput.setAttribute("type", "text");
+    //console.log(lgInput; // for debugging
+    return lgInput;
 }
 
 function buildCheckbox() { // this will be used to build a checkbox input element on demand
@@ -95,6 +102,12 @@ function buildBreak(){ // this will be used to build a break element on demand
     var br = document.createElement("br");
     //console.log(br); // for debugging
     return br;
+}
+
+function buildLine(){ // this will be used to build a break element on demand
+    var hr = document.createElement("hr");
+    //console.log(hr); // for debugging
+    return hr;
 }
 
 function rendHome() {  // this will render the home page on demand
@@ -315,9 +328,9 @@ function rendProf(userType) { // this will render a customized profile page on d
             data.setAttribute("id", "data_cell"); 
             data.append(profData1[i]); 
             editInput.classList.add("cell-frm");
-            editInput.setAttribute("placeholder", "edit here");
+            editInput.setAttribute("placeholder", "update here");
             editButton.classList.add("cell-btn");
-            editButton.append("edit");
+            editButton.append("update");
             dataCell.classList.add("cell6");
             dataCell.append(header); 
             dataCell.append(data); 
@@ -375,6 +388,20 @@ function rendProf(userType) { // this will render a customized profile page on d
         buttonWrapper.append(profRetry);
         buttonWrapper.append(profCont);
     }
+    if (userType == "counselor") { 
+        var profReturn = buildSmButton();
+        profReturn.classList.add("h");
+        profReturn.setAttribute("onclick", "rendDash('counselor')");
+        profReturn.append("return");
+        buttonWrapper.append(profReturn);
+    }
+    if (userType == "advisor") { 
+        var profReturn = buildSmButton();
+        profReturn.classList.add("h");
+        profReturn.setAttribute("onclick", "rendDash('advisor')");
+        profReturn.append("return");
+        buttonWrapper.append(profReturn);
+    }
     if (userType == "new") {
         var profCont = buildSmButton();
         var profBack = buildSmButton();
@@ -390,7 +417,7 @@ function rendProf(userType) { // this will render a customized profile page on d
     //console.log(buttonWrapper); // for debugging
     rendProfButtons.append(buttonWrapper);
     
-    // render note section for counselor and advisor only
+    // render note section title and instructions for counselor and advisor only
     if (userType == "counselor" || userType == "advisor") { 
         var rendNoteText = document.getElementById("render_3"); 
         var textWrapper = buildWrapper(); 
@@ -401,8 +428,39 @@ function rendProf(userType) { // this will render a customized profile page on d
         textWrapper.append(title); 
         textWrapper.append(instructions); 
         //console.log(textWrapper); // for debugging
-        rendNoteText.append(textWrapper); 
+        rendNoteText.append(textWrapper);
     }
+
+    // render note section for counselor and advisor only
+    if (userType == "counselor" || userType == "advisor") { 
+        var rendNoteAdd = document.getElementById("render_4");
+        // var note;
+        var noteAddWrapper = buildWrapper(); 
+        var noteInput = buildLgInput(); 
+        var noteButton = buildSmButton();
+        noteInput.classList.add("note-frm"); 
+        noteInput.setAttribute("id", "note");
+        noteInput.setAttribute("placeholder", "enter note here");
+        noteButton.classList.add("h");
+        noteButton.setAttribute("onclick", "addNote()")
+        noteButton.append("add note");
+        noteAddWrapper.append(noteInput);
+        noteAddWrapper.append(noteButton);
+        //console.log(noteAddWrapper); // for debugging
+        rendNoteAdd.append(noteAddWrapper); 
+    }
+}
+
+function addNote() {
+    var rendNote = document.getElementById("render_5"); 
+    var note = document.getElementById("note").value;
+    var noteWrapper = buildWrapper();
+    var line = buildLine();
+    noteWrapper.append(note);
+    noteWrapper.append(line);
+    //console.log(noteAddWrapper); // for debugging
+    rendNote.append(noteWrapper);
+    // note.setAttribute("value", "");
 }
 
 function rendDash(userType) { // this will render the dashboard on demand
@@ -452,7 +510,7 @@ function rendDash(userType) { // this will render the dashboard on demand
     // render dashboard data for adding courses for student only
     var rendDashAdd = document.getElementById("render_1"); 
     var dataWrapper = buildWrapper(); 
-    // customized profile data contents based on user type
+    // customized dashboard data contents based on user type
     if (userType == "student") { 
         var dataCell; 
         var dataWrapper = buildWrapper();
@@ -502,11 +560,10 @@ function rendDash(userType) { // this will render the dashboard on demand
         rendDashText.append(textWrapper); 
     }
 
-
     // render dashboard data for current courses
     var rendDashData = document.getElementById("render_3"); 
     var dataWrapper = buildWrapper(); 
-    // customized profile data contents based on user type
+    // customized dashboard data contents based on user type
     if (userType == "student") { 
         var dataCell; 
         var dataWrapper = buildWrapper();

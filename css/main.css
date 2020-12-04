@@ -60,13 +60,14 @@ header {
 
 .v {
     display: block;
+    margin: 1% auto;
 }
 
 .wrapper {
     display: block;
     position: relative;
     text-align: center;
-    padding: 2%;
+    padding: 1%;
     margin: 1% auto;
     line-height: 1.5;
 }
@@ -135,6 +136,14 @@ header {
 
 .cell-box {
     margin: 15% auto;
+}
+
+.note-frm {
+    text-align: left;
+    margin: 1% auto;
+    border-radius: 5px;
+    padding: 1%;
+    width: 75%;
 }
 
 /* footer style */
