@@ -308,6 +308,7 @@ function rendProf(userType) { // this will render a customized profile page on d
             var header = buildPara(); 
             var data = buildPara(); 
             var editInput = buildTextInput();
+            var br = buildBreak();
             var editButton = buildSmButton();
             header.setAttribute("id", "data_header"); 
             header.append(profHeaders[i]); 
@@ -315,11 +316,13 @@ function rendProf(userType) { // this will render a customized profile page on d
             data.append(profData1[i]); 
             editInput.classList.add("cell-frm");
             editInput.setAttribute("placeholder", "edit here");
+            editButton.classList.add("cell-btn");
             editButton.append("edit");
             dataCell.classList.add("cell6");
             dataCell.append(header); 
             dataCell.append(data); 
             dataCell.append(editInput);
+            dataCell.append(br);
             dataCell.append(editButton);
             dataWrapper.append(dataCell); 
         }

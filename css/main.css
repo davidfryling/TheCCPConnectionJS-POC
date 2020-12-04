@@ -51,7 +51,7 @@ header {
     border: 1px solid rgba(0, 87, 201, 0.5);
     border-radius: 5px;
     box-shadow: 0 0 7.5px rgba(0,0,0,0.8);
-    overflow-wrap: break-word;
+    /* overflow-wrap: break-word; */
 }
 
 .h {
@@ -217,11 +217,11 @@ button:hover,
     }
 
     .cell11 {
-        width: 8%;
+        width: 9%;
     }
 
     .cell12 {
-        width: 7.25%;
+        width: 8%;
     }
 
     .lg-btn {
