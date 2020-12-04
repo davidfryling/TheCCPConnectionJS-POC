@@ -15,16 +15,6 @@ body {
     padding: 0;
 }
 
-/* hover effects for all clickable elements */
-
-button:hover,
-.header-title:hover,
-.header-logout:hover {
-    cursor: pointer;
-    transform: scale(1.02);
-    transition: transform .25s;
-}
-
 /* header styles & responsive reactions */
 
 header {
@@ -93,14 +83,21 @@ header {
 #data_header {
     text-decoration: underline;
     font-weight: 600;
+    font-size: 75%;
 }
 
 #data_cell {
     font-size: 75%;
 }
 
+.student-click {
+    text-decoration: underline;
+    color: rgba(0, 87, 201, 0.8);
+}
+
 .lg-btn,
-.sm-btn {
+.sm-btn,
+.cell-btn {
     margin: 1% auto;
     border-radius: 5px;
     background-color: rgb(60, 121, 253);
@@ -112,27 +109,32 @@ header {
     padding: 2%;
 }
 
-.sm-btn {
+.sm-btn,
+.cell-btn {
     font-size: 100%;
     padding: 1%;
 }
 
-.lg-frm,
-.sm-frm {
+.reg-frm,
+.cell-frm {
     text-align: left;
     margin: 1% auto;
     border-radius: 5px;
     padding: 1%;
 }
 
-.lg-frm {
-    font-size: 150%;
+.reg-frm {
+    font-size: 100%;
     padding: 1%;
 }
 
-.sm-frm {
+.cell-frm {
     font-size: 100%;
     padding: 1%;
+}
+
+.cell-box {
+    margin: 15% auto;
 }
 
 /* footer style */
@@ -146,6 +148,17 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+/* hover effects for all clickable elements */
+
+button:hover,
+.header-title:hover,
+.header-logout:hover,
+.student-click:hover {
+    cursor: pointer;
+    transform: scale(1.02);
+    transition: transform .25s;
 }
 
 /* responsive styles */
@@ -174,10 +187,15 @@ footer {
 
     .lg-btn, 
     .sm-btn, 
-    .lg-frm, 
-    .sm-frm {
+    .reg-frm, 
+    .cell-btn {
         width: 75%;
-        font-size: 150%;
+        font-size: 125%;
+    }
+
+    .cell-frm {
+        width: 75%;
+        font-size: 75%;
     }
 }
 
@@ -194,8 +212,16 @@ footer {
         width: 100%;
     }
 
-    #cell6 {
+    .cell6 {
         width: 15.5%;
+    }
+
+    .cell11 {
+        width: 8%;
+    }
+
+    .cell12 {
+        width: 7.25%;
     }
 
     .lg-btn {
@@ -212,9 +238,18 @@ footer {
         margin-right: .2%;
     }
 
-    .lg-frm, 
-    .sm-frm {
+    .cell-btn {
+        width: 75%;
+        font-size: 100%;
+    }
+
+    .reg-frm {
         width: 35%;
         margin-top: 1%;
+    } 
+
+    .cell-frm {
+        width: 75%;
+        font-size: 75%;
     }
 }

@@ -2,21 +2,10 @@
 var userType;
 var userName;
 var userTypeArray = ["student", "parent", "counselor", "advisor", "new"];
-
-
-const janeDRequest = { // make array instead and add correspponding header array for this data EDIT!!!!
-    subj : "MATH",
-    courseN : "1149",
-    sectN : "001",
-    synN : "12345",
-    crdHrs : "4",
-    cName : "Trig",
-    daysTimes : "M/W 2:00-3:00 pm",
-    parentApp : "",
-    counsApp : "",
-    reg : "",
-    note: ""
-}
+var profHeaders = ["First Name", "Last Name", "CID", "Student Email", "Parent Email", "School"];
+var profData1 = ["Jane", "Doe", "1234567", "jane.doe@reyn.org", "mama.doe@rgmail.com", "HS2"]; 
+var dashHeaders = ["Student", "Subject", "Course #", "Section #", "Synonym #", "Credit Hours", "Course Name", "Days/Times", "Parent Appr.", "Couns. Appr.", "Registered?"]; // 11 for data
+var dashData1 = ["Jane Doe", "MATH", "1149", "001", "12345", 4.00, "Trigonometry", "M/W 2:00-3:00 pm", "Pending...", "Pending...", "No"];
 
 function logout() { // this will refresh the page on logout so data is erased
     location.reload();
@@ -80,6 +69,13 @@ function buildTextInput() { // this will be used to build a text input element o
     input.setAttribute("type", "text");
     //console.log(input); // for debugging
     return input;
+}
+
+function buildCheckbox() { // this will be used to build a checkbox input element on demand
+    var checkbox = document.createElement("input");
+    checkbox.setAttribute("type", "checkbox");
+    //console.log(checkbox); // for debugging
+    return checkbox;
 }
 
 function buildDataCell() { // this will be used to build the data cell wrapper on demand
@@ -172,11 +168,11 @@ function rendAuth(userType) { // this will render a customized authentication pa
     // customized input and buttons based on user type
     if (userType == "student") { 
         // build first input
-        authInput1.classList.add("sm-frm"); 
+        authInput1.classList.add("reg-frm"); 
         authInput1.classList.add("v"); 
         authInput1.setAttribute("placeholder", "enter email address here");
         // build second input
-        authInput2.classList.add("sm-frm"); 
+        authInput2.classList.add("reg-frm"); 
         authInput2.classList.add("v"); 
         authInput2.setAttribute("placeholder", "enter CID here");
         // build first button
@@ -190,11 +186,11 @@ function rendAuth(userType) { // this will render a customized authentication pa
     }
     else if (userType == "parent") {
         // build first input
-        authInput1.classList.add("sm-frm"); 
+        authInput1.classList.add("reg-frm"); 
         authInput1.classList.add("v"); 
         authInput1.setAttribute("placeholder", "enter your student's CID here"); 
         // build second input
-        authInput2.classList.add("sm-frm"); 
+        authInput2.classList.add("reg-frm"); 
         authInput2.classList.add("v"); 
         authInput2.setAttribute("placeholder", "enter PIN here");
         // build first button
@@ -208,11 +204,11 @@ function rendAuth(userType) { // this will render a customized authentication pa
     }
     else if (userType == "counselor") { 
         // build first input
-        authInput1.classList.add("sm-frm"); 
+        authInput1.classList.add("reg-frm"); 
         authInput1.classList.add("v"); 
         authInput1.setAttribute("placeholder", "enter username here");
         // build second input
-        authInput2.classList.add("sm-frm"); 
+        authInput2.classList.add("reg-frm"); 
         authInput2.classList.add("v"); 
         authInput2.setAttribute("placeholder", "enter password here");
         // build first button
@@ -222,11 +218,11 @@ function rendAuth(userType) { // this will render a customized authentication pa
     }
     else if (userType == "advisor") { 
         // build first input
-        authInput1.classList.add("sm-frm"); 
+        authInput1.classList.add("reg-frm"); 
         authInput1.classList.add("v"); 
         authInput1.setAttribute("placeholder", "enter username here"); 
         // build second input
-        authInput2.classList.add("sm-frm"); 
+        authInput2.classList.add("reg-frm"); 
         authInput2.classList.add("v"); 
         authInput2.setAttribute("placeholder", "enter password here"); 
         // build first button
@@ -284,23 +280,21 @@ function rendProf(userType) { // this will render a customized profile page on d
     rendProfileText.append(textWrapper); 
     
     // render profile data
-    var rendProfileData = document.getElementById("render_1"); 
+    var rendProfData = document.getElementById("render_1"); 
     var dataWrapper = buildWrapper(); 
-    var dataHeaders = ["First Name", "Last Name", "CID", "Student Email", "Parent Email", "School"]; // move to global????
-    var dataDemos = ["Jane", "Doe", "1234567", "jane.doe@reyn.org", "mama.doe@rgmail.com", "HS2"]; // move to global?????
     // customized profile data contents based on user type
     if (userType == "student" || userType == "parent") { 
         var dataCell; 
         var dataWrapper = buildWrapper();
-        for (i=0; i < dataHeaders. length; i++) {
+        for (i=0; i < profHeaders.length; i++) {
             var dataCell = buildDataCell(); 
             var header = buildPara(); 
             var data = buildPara(); 
             header.setAttribute("id", "data_header"); 
-            header.append(dataHeaders[i]); 
+            header.append(profHeaders[i]); 
             data.setAttribute("id", "data_cell"); 
-            data.append(dataDemos[i]); 
-            dataCell.setAttribute("id", "cell6");
+            data.append(profData1[i]); 
+            dataCell.classList.add("cell6");
             dataCell.append(header); 
             dataCell.append(data);
             dataWrapper.append(dataCell);
@@ -309,18 +303,20 @@ function rendProf(userType) { // this will render a customized profile page on d
     if (userType == "counselor" || userType == "advisor") { 
         var dataCell; 
         var dataWrapper = buildWrapper(); 
-        for (i=0; i < dataHeaders. length; i++) {
+        for (i=0; i < profHeaders.length; i++) {
             var dataCell = buildDataCell(); 
             var header = buildPara(); 
             var data = buildPara(); 
             var editInput = buildTextInput();
             var editButton = buildSmButton();
             header.setAttribute("id", "data_header"); 
-            header.append(dataHeaders[i]); 
+            header.append(profHeaders[i]); 
             data.setAttribute("id", "data_cell"); 
-            data.append(dataDemos[i]); 
+            data.append(profData1[i]); 
+            editInput.classList.add("cell-frm");
+            editInput.setAttribute("placeholder", "edit here");
             editButton.append("edit");
-            dataCell.setAttribute("id", "cell6");
+            dataCell.classList.add("cell6");
             dataCell.append(header); 
             dataCell.append(data); 
             dataCell.append(editInput);
@@ -331,20 +327,22 @@ function rendProf(userType) { // this will render a customized profile page on d
     if (userType == "new") { 
         var dataCell; 
         var dataWrapper = buildWrapper(); 
-        for (i=0; i < dataHeaders. length; i++) {
+        for (i=0; i < profHeaders.length; i++) {
             var dataCell = buildDataCell(); 
             var header = buildPara(); 
             var editInput = buildTextInput();
             header.setAttribute("id", "data_header"); 
-            header.append(dataHeaders[i]); 
-            dataCell.setAttribute("id", "cell6");
+            header.append(profHeaders[i]); 
+            editInput.classList.add("cell-frm");
+            editInput.setAttribute("placeholder", "please complete");
+            dataCell.classList.add("cell6");
             dataCell.append(header);
             dataCell.append(editInput);
             dataWrapper.append(dataCell);
         }
     }
     //console.log(dataWrapper); // for debugging
-    rendProfileData.append(dataWrapper); 
+    rendProfData.append(dataWrapper); 
 
     // render buttons
     var rendProfButtons = document.getElementById("render_2"); 
@@ -422,5 +420,243 @@ function rendDash(userType) { // this will render the dashboard on demand
         showLogout();
     }
 
+    // render page title and instructions
+    var rendDashText = document.getElementById("render_0"); 
+    var textWrapper = buildWrapper(); 
+    var title = buildH1(); 
+    var instructions = buildH3();
+    // customized title and instructions based on user type
+    if (userType == "student") { 
+        title.append("Add Course"); 
+        instructions.append("Enter the course information in all fields and press  \"add\"..."); 
+    }
+    else if (userType == "parent") { 
+        title.append("Course Approval"); 
+        instructions.append("If you approve the current course request, please check the box next to the course and press \"approve\"..."); 
+    }
+    else if (userType == "counselor") { 
+        title.append("Counselor Dashboard"); 
+        instructions.append("Note: Max credits and SSID's must be completed in the student's profile before you can approve courses..."); 
+    }
+    else if (userType == "advisor") { 
+        title.append("Advisor Dashboard");  
+    }
+    textWrapper.append(title); 
+    textWrapper.append(instructions); 
+    //console.log(textWrapper); // for debugging
+    rendDashText.append(textWrapper); 
+
+    // render dashboard data for adding courses for student only
+    var rendDashAdd = document.getElementById("render_1"); 
+    var dataWrapper = buildWrapper(); 
+    // customized profile data contents based on user type
+    if (userType == "student") { 
+        var dataCell; 
+        var dataWrapper = buildWrapper();
+        // build first cell
+        var decisionCell = buildDataCell();
+        var decisionButton = buildSmButton();
+        var br = buildBreak();
+        var decisionCheck = buildCheckbox();
+        decisionButton.classList.add("cell-btn");
+        decisionButton.append("add");
+        decisionCheck.classList.add("cell-box");
+        decisionCell.classList.add("cell11");
+        decisionCell.append(decisionButton);
+        decisionCell.append(br);
+        decisionCell.append(decisionCheck);
+        dataWrapper.append(decisionCell);
+        // build remaining cells
+        for (i=1; i < dashHeaders.length; i++) {
+            var dataCell = buildDataCell(); 
+            var header = buildPara(); 
+            var editInput = buildTextInput();
+            header.setAttribute("id", "data_header"); 
+            header.append(dashHeaders[i]); 
+            editInput.classList.add("cell-frm");
+            editInput.setAttribute("placeholder", "please complete");
+            dataCell.classList.add("cell11");
+            dataCell.append(header);
+            dataCell.append(editInput);
+            dataWrapper.append(dataCell);
+        }
+        //console.log(dataWrapper); // for debugging
+        rendDashAdd.append(dataWrapper);
+    }
+
+    // render second page title and instructions for student only
+    var rendDashText = document.getElementById("render_2"); 
+    var textWrapper = buildWrapper(); 
+    var title = buildH1(); 
+    var instructions = buildH3();
+    // customized title and instructions based on user type
+    if (userType == "student") { 
+        title.append("Drop Course"); 
+        instructions.append("Check the course(s) you wish to drop and press \"add\"..."); 
+        textWrapper.append(title); 
+        textWrapper.append(instructions); 
+        //console.log(textWrapper); // for debugging
+        rendDashText.append(textWrapper); 
+    }
+
+
+    // render dashboard data for current courses
+    var rendDashData = document.getElementById("render_3"); 
+    var dataWrapper = buildWrapper(); 
+    // customized profile data contents based on user type
+    if (userType == "student") { 
+        var dataCell; 
+        var dataWrapper = buildWrapper();
+        // build first cell
+        var decisionCell = buildDataCell();
+        var decisionButton = buildSmButton();
+        var br = buildBreak();
+        var decisionCheck = buildCheckbox();
+        decisionButton.classList.add("cell-btn");
+        decisionButton.append("drop");
+        decisionCheck.classList.add("cell-box");
+        decisionCell.classList.add("cell11");
+        decisionCell.append(decisionButton);
+        decisionCell.append(br);
+        decisionCell.append(decisionCheck);
+        dataWrapper.append(decisionCell);
+        // build remaining cells
+        for (i=1; i < dashHeaders.length; i++) {
+            var dataCell = buildDataCell(); 
+            var header = buildPara(); 
+            var data = buildPara(); 
+            header.setAttribute("id", "data_header"); 
+            header.append(dashHeaders[i]); 
+            data.setAttribute("id", "data_cell"); 
+            data.append(dashData1[i]); 
+            dataCell.classList.add("cell11");
+            dataCell.append(header); 
+            dataCell.append(data);
+            dataWrapper.append(dataCell);
+        }
+    }
+    if (userType == "parent") { 
+        var dataCell; 
+        var dataWrapper = buildWrapper();
+         // build first cell
+         var decisionCell = buildDataCell();
+         var decisionButton = buildSmButton();
+         var br = buildBreak();
+         var decisionCheck = buildCheckbox();
+         decisionButton.classList.add("cell-btn");
+         decisionButton.append("approve");
+         decisionCheck.classList.add("cell-box");
+         decisionCell.classList.add("cell11");
+         decisionCell.append(decisionButton);
+         decisionCell.append(br);
+         decisionCell.append(decisionCheck);
+         dataWrapper.append(decisionCell);
+         // build remaining cells
+        for (i=1; i < dashHeaders.length; i++) {
+            var dataCell = buildDataCell(); 
+            var header = buildPara(); 
+            var data = buildPara(); 
+            header.setAttribute("id", "data_header"); 
+            header.append(dashHeaders[i]); 
+            data.setAttribute("id", "data_cell"); 
+            data.append(dashData1[i]); 
+            dataCell.classList.add("cell11");
+            dataCell.append(header); 
+            dataCell.append(data);
+            dataWrapper.append(dataCell);
+        }
+    }
+    if (userType == "counselor") { 
+        var dataCell; 
+        var dataWrapper = buildWrapper();
+         // build first cell
+         var decisionCell = buildDataCell();
+         var decisionButton = buildSmButton();
+         var br = buildBreak();
+         var decisionCheck = buildCheckbox();
+         decisionButton.classList.add("cell-btn");
+         decisionButton.append("approve");
+         decisionCheck.classList.add("cell-box");
+         decisionCell.classList.add("cell12");
+         decisionCell.append(decisionButton);
+         decisionCell.append(br);
+         decisionCell.append(decisionCheck);
+         dataWrapper.append(decisionCell);
+        // build second cell
+        var studentCell = buildDataCell(); 
+        var sHeader = buildPara(); 
+        var sData = buildPara(); 
+        sHeader.setAttribute("id", "data_header"); 
+        sHeader.append(dashHeaders[0]); 
+        sData.setAttribute("id", "data_cell");
+        sData.classList.add("student-click");
+        sData.setAttribute("onclick", "rendProf('counselor')"); 
+        sData.append(dashData1[0]); 
+        studentCell.classList.add("cell12");
+        studentCell.append(sHeader); 
+        studentCell.append(sData); 
+        dataWrapper.append(studentCell); 
+         // build remaining cells 
+        for (i=1; i < dashHeaders.length; i++) {
+            var dataCell = buildDataCell(); 
+            var header = buildPara(); 
+            var data = buildPara(); 
+            header.setAttribute("id", "data_header"); 
+            header.append(dashHeaders[i]); 
+            data.setAttribute("id", "data_cell"); 
+            data.append(dashData1[i]); 
+            dataCell.classList.add("cell12");
+            dataCell.append(header); 
+            dataCell.append(data); 
+            dataWrapper.append(dataCell); 
+        }
+    }
+    if (userType == "advisor") { 
+        var dataCell; 
+        var dataWrapper = buildWrapper(); 
+         // build first cell
+         var decisionCell = buildDataCell();
+         var decisionButton = buildSmButton();
+         var br = buildBreak();
+         var decisionCheck = buildCheckbox();
+         decisionButton.classList.add("cell-btn");
+         decisionButton.append("register");
+         decisionCheck.classList.add("cell-box");
+         decisionCell.classList.add("cell12");
+         decisionCell.append(decisionButton);
+         decisionCell.append(br);
+         decisionCell.append(decisionCheck);
+         dataWrapper.append(decisionCell);
+         // build second cell
+        var studentCell = buildDataCell(); 
+        var sHeader = buildPara(); 
+        var sData = buildPara(); 
+        sHeader.setAttribute("id", "data_header"); 
+        sHeader.append(dashHeaders[0]); 
+        sData.setAttribute("id", "data_cell");
+        sData.classList.add("student-click");
+        sData.setAttribute("onclick", "rendProf('advisor')"); 
+        sData.append(dashData1[0]); 
+        studentCell.classList.add("cell12");
+        studentCell.append(sHeader); 
+        studentCell.append(sData); 
+        dataWrapper.append(studentCell); 
+         // build remaining cells
+        for (i=1; i < dashHeaders.length; i++) {
+            var dataCell = buildDataCell(); 
+            var header = buildPara(); 
+            var data = buildPara(); 
+            header.setAttribute("id", "data_header"); 
+            header.append(dashHeaders[i]); 
+            data.setAttribute("id", "data_cell"); 
+            data.append(dashData1[i]); 
+            dataCell.classList.add("cell12");
+            dataCell.append(header); 
+            dataCell.append(data); 
+            dataWrapper.append(dataCell); 
+        }
+    }
+    //console.log(dataWrapper); // for debugging
+    rendDashData.append(dataWrapper);
 
 }
