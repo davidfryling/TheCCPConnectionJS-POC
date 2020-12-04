@@ -221,6 +221,11 @@ button:hover,
         height: 35px;
         width: 35px;
     }
+
+    footer img {
+        height: 25%;
+        width: 25%;
+    }
 }
 
 @media (min-width: 769px) {
