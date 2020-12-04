@@ -25,7 +25,8 @@ header {
     min-height: 20px;
     display: flex; /* establish flex container */
     justify-content: space-between; /* keep space between even so three elements remain left, cetner, right */
-    background-color: rgb(60, 121, 253);
+    /* background-color: rgb(60, 121, 253); */
+    background-image: linear-gradient(to right, rgb(64, 124, 255), rgb(142, 177, 255));
     color: white;
     align-items: center;
     padding-left: 1%;
@@ -84,11 +85,6 @@ header {
 #data_header {
     text-decoration: underline;
     font-weight: 600;
-    font-size: 75%;
-}
-
-#data_cell {
-    font-size: 75%;
 }
 
 .student-click {
@@ -101,20 +97,27 @@ header {
 .cell-btn {
     margin: 1% auto;
     border-radius: 5px;
-    background-color: rgb(60, 121, 253);
+    /* background-color: rgb(60, 121, 253); */
+    background-image: linear-gradient(to top, rgb(64, 124, 255), rgb(142, 177, 255));
     color: white;
 }
 
 .lg-btn {
-    font-size: 150%;
     padding: 2%;
 }
 
 .sm-btn,
 .cell-btn {
-    font-size: 100%;
     padding: 1%;
 }
+
+/* .back-btn {
+    font-weight: 900;
+    font-size: 125%;
+    color: rgb(172, 172, 172);
+    margin-top: 0;
+    margin-left: 1%;
+} */
 
 .reg-frm,
 .cell-frm {
@@ -125,12 +128,10 @@ header {
 }
 
 .reg-frm {
-    font-size: 100%;
     padding: 1%;
 }
 
 .cell-frm {
-    font-size: 100%;
     padding: 1%;
 }
 
@@ -164,7 +165,8 @@ footer {
 button:hover,
 .header-title:hover,
 .header-logout:hover,
-.student-click:hover {
+.student-click:hover,
+.back-btn:hover {
     cursor: pointer;
     transform: scale(1.02);
     transition: transform .25s;
@@ -191,20 +193,36 @@ button:hover,
 
     .data-cell  {
         width: 100%;
+    }
+
+    #data_header {
+        font-size: 125%;
+    }
+
+    #data_cell {
         font-size: 125%;
     }
 
     .lg-btn, 
     .sm-btn, 
-    .reg-frm, 
     .cell-btn {
         width: 75%;
         font-size: 125%;
     }
 
-    .cell-frm {
+    .cell-frm,
+    .reg-frm {
         width: 75%;
-        font-size: 75%;
+        font-size: 100%;
+    }
+
+    .note-frm {
+
+    }
+
+    input[type="checkbox"] {
+        height: 35px;
+        width: 35px;
     }
 }
 
@@ -219,6 +237,14 @@ button:hover,
 
     .wrapper {
         width: 100%;
+    }
+
+    #data_header {
+        font-size: 75%;
+    }
+
+    #data_cell {
+        font-size: 75%;
     }
 
     .cell6 {
@@ -238,6 +264,7 @@ button:hover,
         margin-top: 1%;
         margin-left: .5%;
         margin-right: .5%;
+        font-size: 150%;
     }
  
     .sm-btn {
@@ -245,20 +272,31 @@ button:hover,
         margin-top: 1%;
         margin-left: .5%;
         margin-right: .2%;
+        font-size: 125%;
     }
 
     .cell-btn {
-        width: 75%;
-        font-size: 100%;
+        width: 50%;
+        font-size: 75%;
     }
 
     .reg-frm {
         width: 35%;
         margin-top: 1%;
+        font-size: 100%;
     } 
 
     .cell-frm {
         width: 75%;
         font-size: 75%;
+    }
+
+    input[type="checkbox"] {
+        height: 17px;
+        width: 17px;
+    }
+
+    .note-frm {
+        font-size: 100%;
     }
 }

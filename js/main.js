@@ -6,6 +6,10 @@ var profHeaders = ["First Name", "Last Name", "CID", "Student Email", "Parent Em
 var profData1 = ["Jane", "Doe", "1234567", "jane.doe@reyn.org", "mama.doe@rgmail.com", "HS2"]; 
 var dashHeaders = ["Student", "Subject", "Course #", "Section #", "Synonym #", "Credit Hours", "Course Name", "Days/Times", "Parent Appr.", "Couns. Appr.", "Registered?"]; // 11 for data
 var dashData1 = ["Jane Doe", "MATH", "1149", "001", "12345", 4.00, "Trigonometry", "M/W 2:00-3:00 pm", "Pending...", "Pending...", "No"];
+var rendStack = [];
+var lastRend;
+
+// button click functions
 
 function logout() { // this will refresh the page on logout so data is erased
     location.reload();
@@ -30,6 +34,8 @@ function showLogout() { // this will be used to show the logout text on demand
     //console.log(logout); // for debugging
     logout.style.display = "block";
 }
+
+// element building functions
 
 function buildWrapper() { // this will be used to build the section wrapper on demand
     var wrapper = document.createElement("div");
@@ -139,6 +145,8 @@ function rendHome() {  // this will render the home page on demand
     //console.log(buttonWrapper); // for debugging
     rendHomeButtons.append(buttonWrapper); 
 }
+
+// page render functions
 
 function rendAuth(userType) { // this will render a customized authentication page on demand
     // first, clear any contents currently in the container
@@ -553,7 +561,7 @@ function rendDash(userType) { // this will render the dashboard on demand
     // customized title and instructions based on user type
     if (userType == "student") { 
         title.append("Drop Course"); 
-        instructions.append("Check the course(s) you wish to drop and press \"add\"..."); 
+        instructions.append("Check the course(s) you wish to drop and press \"drop\"..."); 
         textWrapper.append(title); 
         textWrapper.append(instructions); 
         //console.log(textWrapper); // for debugging
