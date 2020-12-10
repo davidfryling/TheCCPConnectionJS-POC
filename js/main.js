@@ -35,6 +35,18 @@ function showLogout() { // this will be used to show the logout text on demand
     logout.style.display = "block";
 }
 
+function hideBack() {
+    var back = document.getElementById("back");
+    //console.log(back); // for debugging
+    back.style.display = "none";
+}
+
+function showBack() {
+    var back = document.getElementById("back");
+    //console.log(back); // for debugging
+    back.style.display = "block";
+}
+
 // element building functions
 
 function buildWrapper() { // this will be used to build the section wrapper on demand
@@ -118,7 +130,10 @@ function buildLine(){ // this will be used to build a break element on demand
 
 function rendHome() {  // this will render the home page on demand
     // first, clear any contents currently in the container
-    clearContainer(); 
+    clearContainer();
+
+    // back button actions
+    hideBack(); 
     
     // render page title and instructions
     var rendHomeText = document.getElementById("render_0"); 
@@ -151,6 +166,11 @@ function rendHome() {  // this will render the home page on demand
 function rendAuth(userType) { // this will render a customized authentication page on demand
     // first, clear any contents currently in the container
     clearContainer(); 
+
+    // back button actions
+    var backButton = document.getElementById("back");
+    backButton.setAttribute("onclick", "rendHome()");
+    showBack(); 
     
     // render page title and instructions
     var rendAuthText = document.getElementById("render_0"); 
@@ -268,6 +288,22 @@ function rendAuth(userType) { // this will render a customized authentication pa
 function rendProf(userType) { // this will render a customized profile page on demand
    // first, clear any contents currently in the container
     clearContainer(); 
+
+    // back button actions
+    var backButton = document.getElementById("back");
+    if (userType == "student" || userType == "new") { 
+        backButton.setAttribute("onclick", "rendAuth('student')");
+    }
+    else if (userType == "parent") { 
+        backButton.setAttribute("onclick", "rendAuth('parent')");
+    }
+    else if (userType == "counselor") { 
+        backButton.setAttribute("onclick", "rendDash('counselor')"); 
+    }
+    else if (userType == "advisor") { 
+        backButton.setAttribute("onclick", "rendDash('advisor')"); 
+    }
+    showBack(); 
     
     // render page title and instructions
     var rendProfileText = document.getElementById("render_0"); 
@@ -374,52 +410,23 @@ function rendProf(userType) { // this will render a customized profile page on d
     // customized buttons based on user type
     if (userType == "student") { 
         var profCont = buildSmButton();
-        var profRetry = buildSmButton();
         profCont.classList.add("h");
         profCont.setAttribute("onclick", "rendDash('student')");
         profCont.append("continue");
-        profRetry.classList.add("h");
-        profRetry.setAttribute("onclick", "rendAuth('student')");
-        profRetry.append("retry");
-        buttonWrapper.append(profRetry);
         buttonWrapper.append(profCont);
     }
     if (userType == "parent") { 
         var profCont = buildSmButton();
-        var profRetry = buildSmButton();
         profCont.classList.add("h");
         profCont.setAttribute("onclick", "rendDash('parent')");
         profCont.append("continue");
-        profRetry.classList.add("h");
-        profRetry.setAttribute("onclick", "rendAuth('parent')");
-        profRetry.append("retry");
-        buttonWrapper.append(profRetry);
         buttonWrapper.append(profCont);
-    }
-    if (userType == "counselor") { 
-        var profReturn = buildSmButton();
-        profReturn.classList.add("h");
-        profReturn.setAttribute("onclick", "rendDash('counselor')");
-        profReturn.append("return");
-        buttonWrapper.append(profReturn);
-    }
-    if (userType == "advisor") { 
-        var profReturn = buildSmButton();
-        profReturn.classList.add("h");
-        profReturn.setAttribute("onclick", "rendDash('advisor')");
-        profReturn.append("return");
-        buttonWrapper.append(profReturn);
     }
     if (userType == "new") {
         var profCont = buildSmButton();
-        var profBack = buildSmButton();
         profCont.classList.add("h");
         profCont.setAttribute("onclick", "rendProf('student')");
         profCont.append("create");
-        profBack.classList.add("h");
-        profBack.setAttribute("onclick", "rendAuth('student')");
-        profBack.append("back");
-        buttonWrapper.append(profBack);
         buttonWrapper.append(profCont);
     }
     //console.log(buttonWrapper); // for debugging
@@ -474,6 +481,22 @@ function addNote() {
 function rendDash(userType) { // this will render the dashboard on demand
     // first, clear any contents currently in the container
     clearContainer(); 
+
+    // back button actions
+    var backButton = document.getElementById("back");
+    if (userType == "student") { 
+        backButton.setAttribute("onclick", "rendProf('student')");
+    }
+    else if (userType == "parent") { 
+        backButton.setAttribute("onclick", "rendProf('parent')");
+    }
+    else if (userType == "counselor") { 
+        backButton.setAttribute("onclick", "rendAuth('counselor')"); 
+    }
+    else if (userType == "advisor") { 
+        backButton.setAttribute("onclick", "rendAuth('advisor')"); 
+    }
+    showBack();
     
     // customize and show logout with username
     if (userType == "counselor" || userType == "advisor") {

@@ -111,13 +111,14 @@ header {
     padding: 1%;
 }
 
-/* .back-btn {
+.back-btn {
+    display: none;
     font-weight: 900;
     font-size: 125%;
     color: rgb(172, 172, 172);
     margin-top: 0;
     margin-left: 1%;
-} */
+}
 
 .reg-frm,
 .cell-frm {

@@ -14,7 +14,7 @@
         <!--header section - logout with user will only appear after authentication -->
 
         <header>
-            <h1 class="header-title" onclick="logout()">the ccp connection</h1>
+            <h1 class="header-title" onclick="rendHome()">the ccp connection</h1>
                 <!-- <span class="tooltip-text">Click Page Title to Return Home</span> LATER MAYBE-->
             <h3 id="logout" class="header-logout" onclick="logout()">logout</h3>
         </header>
@@ -22,7 +22,7 @@
         <!-- main container - will hold all dynamically rendered elements-->
 
        <div class="container">
-            <!-- <p class="back-btn" onclick="useLastRend()">&lt;&nbsp;go back</p> LATER, IF I HAVE TIME-->
+            <p id="back" class="back-btn">&lt;&nbsp;go back</p>
             <div id="render_0"></div>
             <div id="render_1"></div>
             <div id="render_2"></div>
