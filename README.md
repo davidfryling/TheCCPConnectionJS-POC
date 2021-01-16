@@ -1,1 +1,2 @@
-# CCP-Connection
+# The CCP Connection UI (JavaScript/HTML/CSS)
+This proof of concept was a blast! Although the final web app will not be a single-page architecture, I wanted to see if I could dynamically load all of the page content onto a single HTML page with a DOM manipulation with JavaScript. This forced me to rethink the flow and design of the website, streamlining the look and feel of the application. I also spent time working with the CSS to make sure that the layout of the webpages was responsive and changed when viewed on mobile devices.
